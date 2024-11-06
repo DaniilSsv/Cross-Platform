@@ -21,7 +21,6 @@ const Header = () => (
             <Text style={styles.navLink}>Home</Text>
             <Text style={styles.navLink}>Collection</Text>
         </View>
-        {/* linken naar user settings pagina */}
         <Icon name="user" size={20} color="#C67C4E" style={styles.icon} />
     </View>
 );
@@ -33,7 +32,6 @@ const Banner = () => (
         <View style={styles.bannerTextContainer}>
             <Text style={styles.bannerTitle}>Drive your dream car</Text>
             <Text style={styles.bannerSubtitle}>Over 20 New Models</Text>
-            {/* zoekbalk om een auto te vinden die je wil lenen */}
             <SearchBar />
         </View>
     </View>
@@ -51,7 +49,7 @@ const SellCarSection = () => (
     <View style={styles.sellCarSection}>
         <Text style={styles.sellTitle}>WANT TO RENT OUT YOUR CAR?</Text>
         <Text style={styles.sellSubtitle}>Here is how you can do it in less than a minute</Text>
-        <Image source={{ uri: 'path/to/your/sell/car/image' }} style={styles.sellImage} />
+        <Image source={require('../assets/CarRent.jpeg')} style={styles.sellImage} />
         <Text style={styles.sellFeatures}>• Best Price{'\n'}• Instant Payment/delivery</Text>
         <TouchableOpacity style={styles.knowMoreButton}>
             <Text style={styles.knowMoreText}>RENT OUT</Text>
@@ -86,69 +84,49 @@ const CarCard = ({ imageUri, title, subtitle }) => (
 const Footer = () => (
     <View style={styles.footer}>
         <Text style={styles.footerText}>Kalymarym</Text>
-        {/* Add additional footer links here */}
         <Text style={styles.footerCopy}>2024 All Rights Reserved | Terms of Use</Text>
-    </View>
-);
-
-const Subscribe = () => (
-    <View style={styles.subscribeContainer}>
-        <TextInput placeholder="Enter Email For Updates" style={styles.emailInput} />
-        <TouchableOpacity style={styles.submitButton}>
-            <Text style={styles.submitButtonText}>Submit</Text>
-        </TouchableOpacity>
     </View>
 );
 
 // Styles
 const styles = StyleSheet.create({
-    container: { backgroundColor: '#F9F2ED', flex: 1 }, // Off White Background
-    header: { flexDirection: 'row', justifyContent: 'space-between', padding: 16, backgroundColor: '#313131' }, // Dark Background
-    logo: { color: '#EDD6C8', fontSize: 18 }, // Secondary Accent
+    container: { backgroundColor: '#F9F2ED', flex: 1 },
+    header: { flexDirection: 'row', justifyContent: 'space-between', padding: 16, backgroundColor: '#313131' },
+    logo: { color: '#EDD6C8', fontSize: 18 },
     navLinks: { flexDirection: 'row' },
-    navLink: { color: '#E3E3E3', marginHorizontal: 10 }, // Light Grey
+    navLink: { color: '#E3E3E3', marginHorizontal: 10 },
     icon: { marginRight: 10 },
 
     banner: { position: 'relative' },
-    bannerImage: { width: '100%', height: 200 },
+    bannerImage: { width: '100%' },
     bannerTextContainer: { position: 'absolute', top: 50, left: 20 },
-    bannerTitle: { color: '#EDD6C8', fontSize: 24, fontWeight: 'bold' }, // Secondary Accent
+    bannerTitle: { color: '#EDD6C8', fontSize: 24, fontWeight: 'bold' },
     bannerSubtitle: { color: '#EDD6C8', marginTop: 5 },
-    searchContainer: { flexDirection: 'row', marginTop: 20, backgroundColor: '#E3E3E3', borderRadius: 8 }, // Light Grey
+    searchContainer: { flexDirection: 'row', marginTop: 20, backgroundColor: '#E3E3E3', borderRadius: 8 },
     searchInput: { flex: 1, padding: 8 },
     searchIcon: { padding: 10 },
 
-    sellCarSection: { padding: 16, backgroundColor: '#313131' }, // Dark Background
-    sellTitle: { color: '#EDD6C8', fontSize: 20, fontWeight: 'bold' }, // Secondary Accent
-    sellSubtitle: { color: '#E3E3E3', marginVertical: 10 }, // Light Grey
-    sellImage: { width: '100%', height: 150, borderRadius: 8, marginVertical: 10 },
-    sellFeatures: { color: '#EDD6C8' }, // Secondary Accent
-    knowMoreButton: { padding: 10, backgroundColor: '#C67C4E', borderRadius: 8, marginTop: 10 }, // Primary Accent
+    sellCarSection: { padding: 16, backgroundColor: '#313131' },
+    sellTitle: { color: '#EDD6C8', fontSize: 20, fontWeight: 'bold' },
+    sellSubtitle: { color: '#E3E3E3', marginVertical: 10 },
+    sellImage: { width: '100%', borderRadius: 8, marginVertical: 10 },
+    sellFeatures: { color: '#EDD6C8' },
+    knowMoreButton: { padding: 10, backgroundColor: '#C67C4E', borderRadius: 8, marginTop: 10 },
     knowMoreText: { color: '#FFF', textAlign: 'center' },
 
-    howItWorksSection: { padding: 16, backgroundColor: '#313131' }, // Dark Background
-    howTitle: { color: '#EDD6C8', fontSize: 20, fontWeight: 'bold' }, // Secondary Accent
-    howDescription: { color: '#E3E3E3', marginTop: 10 }, // Light Grey
-
-    popularSection: { padding: 16, backgroundColor: '#313131' }, // Dark Background
-    popularTitle: { color: '#EDD6C8', fontSize: 20, fontWeight: 'bold' }, // Secondary Accent
+    popularSection: { padding: 16, backgroundColor: '#313131' },
+    popularTitle: { color: '#EDD6C8', fontSize: 20, fontWeight: 'bold' },
     popularCars: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
-    carCard: { width: '48%', backgroundColor: '#EDD6C8', marginVertical: 10, borderRadius: 8, padding: 10 }, // Secondary Accent
+    carCard: { width: '48%', backgroundColor: '#EDD6C8', marginVertical: 10, borderRadius: 8, padding: 10 },
     carImage: { width: '100%', height: 120, borderRadius: 8 },
-    carDetails: { color: '#313131', marginTop: 10 }, // Dark Background Text
-    carSubDetails: { color: '#313131' }, // Dark Background Text
+    carDetails: { color: '#313131', marginTop: 10 },
+    carSubDetails: { color: '#313131' },
     seeAllButton: { alignItems: 'center', marginTop: 10 },
-    seeAllText: { color: '#C67C4E' }, // Primary Accent
+    seeAllText: { color: '#C67C4E' },
 
-    footer: { padding: 16, backgroundColor: '#313131' }, // Dark Background
-    footerTitle: { color: '#EDD6C8' }, // Secondary Accent
-    footerIcons: { flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 },
-    subscribeContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#E3E3E3', borderRadius: 8, padding: 10 }, // Light Grey
-    emailInput: { flex: 1, color: '#313131' }, // Dark Background Text
-    submitButton: { paddingHorizontal: 16, backgroundColor: '#C67C4E', borderRadius: 8 }, // Primary Accent
-    submitButtonText: { color: '#FFF' },
-    footerText: { color: '#EDD6C8', marginTop: 10 }, // Secondary Accent
-    footerCopy: { color: '#E3E3E3', fontSize: 12, marginTop: 10 }, // Light Grey
+    footer: { padding: 16, backgroundColor: '#313131' },
+    footerText: { color: '#EDD6C8', marginTop: 10 },
+    footerCopy: { color: '#E3E3E3', fontSize: 12, marginTop: 10 },
 });
 
 export default HomeScreen;
