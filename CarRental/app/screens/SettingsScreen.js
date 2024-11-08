@@ -1,26 +1,24 @@
-import React, { useState } from 'react';
-import { View, Text, Switch, TouchableOpacity, StyleSheet, Picker, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Switch, StyleSheet, Picker, ScrollView, useColorScheme } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useTheme } from '../ContextAPI';
 
-// Settings Screen
 const SettingsScreen = () => {
-    const [isDarkTheme, setIsDarkTheme] = useState(false);
+    const { isDarkTheme, toggleTheme } = useTheme();
+    const styles = getStyles(isDarkTheme);
+
     const [selectedLanguage, setSelectedLanguage] = useState('en');
     const [selectedCurrency, setSelectedCurrency] = useState('EUR');
 
-    // Toggle Theme
-    const toggleTheme = () => setIsDarkTheme(!isDarkTheme);
-
     return (
-        <View style={[styles.container, isDarkTheme && styles.darkBackground]}>
+        <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollContainer}>
-                <Header />
+                <Header styles={styles} />
 
-                {/* Theme Selection */}
                 <View style={styles.settingsSection}>
-                    <Text style={[styles.settingsTitle, isDarkTheme && styles.darkText]}>Theme</Text>
+                    <Text style={styles.settingsTitle}>Theme</Text>
                     <View style={styles.settingItem}>
-                        <Text style={[styles.settingLabel, isDarkTheme && styles.darkText]}>Dark Mode</Text>
+                        <Text style={styles.settingLabel}>Dark Mode</Text>
                         <Switch
                             value={isDarkTheme}
                             onValueChange={toggleTheme}
@@ -29,15 +27,14 @@ const SettingsScreen = () => {
                     </View>
                 </View>
 
-                {/* Language Selection */}
                 <View style={styles.settingsSection}>
-                    <Text style={[styles.settingsTitle, isDarkTheme && styles.darkText]}>Language</Text>
+                    <Text style={styles.settingsTitle}>Language</Text>
                     <View style={styles.settingItem}>
-                        <Text style={[styles.settingLabel, isDarkTheme && styles.darkText]}>Select Language</Text>
+                        <Text style={styles.settingLabel}>Select Language</Text>
                         <Picker
                             selectedValue={selectedLanguage}
                             onValueChange={(itemValue) => setSelectedLanguage(itemValue)}
-                            style={[styles.picker, isDarkTheme && styles.darkPicker]}
+                            style={styles.picker}
                         >
                             <Picker.Item label="English" value="en" />
                             <Picker.Item label="Dutch" value="nl" />
@@ -46,15 +43,14 @@ const SettingsScreen = () => {
                     </View>
                 </View>
 
-                {/* Currency Selection */}
                 <View style={styles.settingsSection}>
-                    <Text style={[styles.settingsTitle, isDarkTheme && styles.darkText]}>Currency</Text>
+                    <Text style={styles.settingsTitle}>Currency</Text>
                     <View style={styles.settingItem}>
-                        <Text style={[styles.settingLabel, isDarkTheme && styles.darkText]}>Select Currency</Text>
+                        <Text style={styles.settingLabel}>Select Currency</Text>
                         <Picker
                             selectedValue={selectedCurrency}
                             onValueChange={(itemValue) => setSelectedCurrency(itemValue)}
-                            style={[styles.picker, isDarkTheme && styles.darkPicker]}
+                            style={styles.picker}
                         >
                             <Picker.Item label="Euro (€)" value="EUR" />
                             <Picker.Item label="US Dollar ($)" value="USD" />
@@ -63,13 +59,12 @@ const SettingsScreen = () => {
                     </View>
                 </View>
             </ScrollView>
-            <Footer />
+            <Footer styles={styles} />
         </View>
     );
 };
 
-// Header Component
-const Header = () => (
+const Header = ({ styles }) => (
     <View style={styles.header}>
         <Text style={styles.logo}>Kalymarym</Text>
         <View style={styles.navLinks}>
@@ -80,37 +75,33 @@ const Header = () => (
     </View>
 );
 
-// Footer Component
-const Footer = () => (
+const Footer = ({ styles }) => (
     <View style={styles.footer}>
         <Text style={styles.footerText}>Kalymarym</Text>
         <Text style={styles.footerCopy}>2024 All Rights Reserved | Terms of Use</Text>
     </View>
 );
 
-const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#F9F2ED' },
-    scrollContainer: { flexGrow: 1 },
+const getStyles = (isDarkTheme) =>
+    StyleSheet.create({
+        container: { flex: 1, backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED' },
+        scrollContainer: { flexGrow: 1 },
 
-    header: { flexDirection: 'row', justifyContent: 'space-between', padding: 16, backgroundColor: '#313131' },
-    logo: { color: '#EDD6C8', fontSize: 18 },
-    navLinks: { flexDirection: 'row' },
-    navLink: { color: '#E3E3E3', marginHorizontal: 10 },
-    icon: { marginRight: 10 },
+        header: { flexDirection: 'row', justifyContent: 'space-between', padding: 16, backgroundColor: '#313131' },
+        logo: { color: '#EDD6C8', fontSize: 18 },
+        navLinks: { flexDirection: 'row' },
+        navLink: { color: '#EDD6C8', marginHorizontal: 10 },
+        icon: { marginRight: 10 },
 
-    settingsSection: { padding: 16, backgroundColor: '#EDD6C8', marginVertical: 10, borderRadius: 8 },
-    settingsTitle: { fontSize: 20, fontWeight: 'bold', color: '#313131' },
-    settingItem: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 },
-    settingLabel: { color: '#313131', fontSize: 16 },
-    picker: { width: 150, color: '#313131' },
+        settingsSection: { padding: 16, marginVertical: 10, backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', borderRadius: 8 },
+        settingsTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
+        settingItem: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 },
+        settingLabel: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 16 },
+        picker: { width: 150, color: isDarkTheme ? '#EDD6C8' : '#313131', backgroundColor: isDarkTheme ? '#313131' : '#EDD6C8'},
 
-    darkBackground: { backgroundColor: '#313131' },
-    darkText: { color: '#EDD6C8' },
-    darkPicker: { color: '#EDD6C8' },
-
-    footer: { backgroundColor: '#313131', padding: 16, alignItems: 'center' },
-    footerText: { color: '#EDD6C8', marginTop: 10 },
-    footerCopy: { color: '#E3E3E3', fontSize: 12, marginTop: 10 },
-});
+        footer: { backgroundColor: '#313131', padding: 16, alignItems: 'center' },
+        footerText: { color: '#EDD6C8', marginTop: 10 },
+        footerCopy: { color: '#EDD6C8', fontSize: 12, marginTop: 10 },
+    });
 
 export default SettingsScreen;
