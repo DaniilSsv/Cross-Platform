@@ -9,6 +9,7 @@ export default function App() {
   return (
     <ThemeProvider>
       {/* navigatie plus nog andere schermen */}
+      <HomeScreen/>
       <SettingsScreen/>
     </ThemeProvider>
   );
