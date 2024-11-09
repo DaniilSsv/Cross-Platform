@@ -1,0 +1,47 @@
+[
+    {
+        "imageUri": "path/to/car1",
+        "title": "Porsche 911",
+        "subtitle": "Year - 2021 | KMS - 25000 | Fuel Type - Petrol"
+    },
+    {
+        "imageUri": "path/to/car2",
+        "title": "Mercedes C300",
+        "subtitle": "Year - 2020 | KMS - 15000 | Fuel Type - Diesel"
+    },
+    {
+        "imageUri": "path/to/car3",
+        "title": "Mercedes S300",
+        "subtitle": "Year - 2019 | KMS - 30000 | Fuel Type - Electric"
+    },
+    {
+        "imageUri": "path/to/car4",
+        "title": "Porsche Taycan",
+        "subtitle": "Year - 2022 | KMS - 10000 | Fuel Type - Petrol"
+    },
+    {
+        "imageUri": "path/to/car5",
+        "title": "BMW M5",
+        "subtitle": "Year - 2022 | KMS - 10000 | Fuel Type - Petrol"
+    },
+    {
+        "imageUri": "path/to/car6",
+        "title": "BMW X5",
+        "subtitle": "Year - 2022 | KMS - 10000 | Fuel Type - Petrol"
+    },
+    {
+        "imageUri": "path/to/car7",
+        "title": "Lexus LS500",
+        "subtitle": "Year - 2022 | KMS - 10000 | Fuel Type - Petrol"
+    },
+    {
+        "imageUri": "path/to/car8",
+        "title": "Lamborghini Huracan",
+        "subtitle": "Year - 2022 | KMS - 10000 | Fuel Type - Petrol"
+    },
+    {
+        "imageUri": "path/to/car9",
+        "title": "Lamborghini STO",
+        "subtitle": "Year - 2022 | KMS - 10000 | Fuel Type - Petrol"
+    }
+]

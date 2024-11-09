@@ -1,46 +1,61 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import React, { useState, useEffect} from 'react';
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useTheme } from '../ContextAPI';
+import cars from '../json/cars.json'; // collectie te vullen
 
 // Collection Screen
-const CollectionScreen = () => (
-    <ScrollView style={styles.container}>
-        <Header />
-        <CollectionSection />
-        <Footer />
-    </ScrollView>
-);
+const CollectionScreen = () => {
+    const { isDarkTheme } = useTheme();
+    const dynamicStyles = createStyles(isDarkTheme);
 
-// Collection Section Component
-const CollectionSection = () => {
-    const cars = [
-        { imageUri: 'path/to/car1', title: 'Car 1', subtitle: 'Year - 2021 | KMS - 25000 | Fuel Type - Petrol' },
-        { imageUri: 'path/to/car2', title: 'Car 2', subtitle: 'Year - 2020 | KMS - 15000 | Fuel Type - Diesel' },
-        { imageUri: 'path/to/car3', title: 'Car 3', subtitle: 'Year - 2019 | KMS - 30000 | Fuel Type - Electric' },
-        { imageUri: 'path/to/car4', title: 'Car 4', subtitle: 'Year - 2022 | KMS - 10000 | Fuel Type - Petrol' },
-        { imageUri: 'path/to/car5', title: 'Car 5', subtitle: 'Year - 2023 | KMS - 5000 | Fuel Type - Electric' },
-        { imageUri: 'path/to/car6', title: 'Car 6', subtitle: 'Year - 2018 | KMS - 40000 | Fuel Type - Petrol' },
-        { imageUri: 'path/to/car7', title: 'Car 7', subtitle: 'Year - 2021 | KMS - 25000 | Fuel Type - Diesel' },
-        { imageUri: 'path/to/car8', title: 'Car 8', subtitle: 'Year - 2019 | KMS - 27000 | Fuel Type - Electric' },
-        { imageUri: 'path/to/car9', title: 'Car 9', subtitle: 'Year - 2020 | KMS - 15000 | Fuel Type - Petrol' },
-        { imageUri: 'path/to/car10', title: 'Car 10', subtitle: 'Year - 2021 | KMS - 22000 | Fuel Type - Diesel' },
-        { imageUri: 'path/to/car11', title: 'Car 11', subtitle: 'Year - 2022 | KMS - 10000 | Fuel Type - Electric' },
-        { imageUri: 'path/to/car12', title: 'Car 12', subtitle: 'Year - 2023 | KMS - 3000 | Fuel Type - Petrol' },
-        { imageUri: 'path/to/car13', title: 'Car 13', subtitle: 'Year - 2018 | KMS - 35000 | Fuel Type - Diesel' },
-        { imageUri: 'path/to/car14', title: 'Car 14', subtitle: 'Year - 2021 | KMS - 18000 | Fuel Type - Electric' },
-        { imageUri: 'path/to/car15', title: 'Car 15', subtitle: 'Year - 2019 | KMS - 22000 | Fuel Type - Petrol' },
-        { imageUri: 'path/to/car16', title: 'Car 16', subtitle: 'Year - 2020 | KMS - 25000 | Fuel Type - Diesel' },
-        { imageUri: 'path/to/car17', title: 'Car 17', subtitle: 'Year - 2021 | KMS - 12000 | Fuel Type - Electric' },
-        { imageUri: 'path/to/car18', title: 'Car 18', subtitle: 'Year - 2022 | KMS - 7000 | Fuel Type - Petrol' },
-        { imageUri: 'path/to/car19', title: 'Car 19', subtitle: 'Year - 2023 | KMS - 5000 | Fuel Type - Diesel' },
-        { imageUri: 'path/to/car20', title: 'Car 20', subtitle: 'Year - 2019 | KMS - 35000 | Fuel Type - Electric' },
-    ];
+    //state
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredCars, setFilteredCars] = useState(cars);
+
+    //update list
+    useEffect(() => {
+        const filtered = cars.filter(car =>
+            car.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            car.subtitle.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredCars(filtered);
+    }, [searchQuery]);
 
     return (
-        <View style={styles.collectionSection}>
-            <Text style={styles.collectionTitle}>OUR COLLECTION</Text>
-            <View style={styles.collectionCars}>
+    <ScrollView style={dynamicStyles.container}>
+        <CollectionSection cars={filteredCars} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+        <Footer />
+    </ScrollView>
+    );
+};
+
+// Searchbar Component
+const SearchBar = ({searchQuery, setSearchQuery}) => {
+    const { isDarkTheme } = useTheme();
+    const dynamicStyles = createStyles(isDarkTheme);
+    
+    return (
+        <View style={dynamicStyles.searchContainer}>
+            <TextInput value={searchQuery} onChangeText={setSearchQuery} placeholder={"What are you looking for?"} placeholderTextColor={isDarkTheme ? "#E3E3E3" : "#313131"} style={dynamicStyles.searchInput} />
+            <Icon name="search" size={20} color={isDarkTheme ? "#EDD6C8" : "#313131"} style={dynamicStyles.searchIcon} />
+        </View>
+    );
+};
+
+// Collection Section Component
+const CollectionSection = ({cars, searchQuery, setSearchQuery}) => {
+    const { isDarkTheme } = useTheme();
+    const dynamicStyles = createStyles(isDarkTheme);
+
+    return (
+        <View style={dynamicStyles.collectionSection}>
+            <Text style={dynamicStyles.collectionTitle}>OUR COLLECTION</Text>
+            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+
+            <View style={dynamicStyles.collectionCars}>
                 {cars.map((car, index) => (
+                    {/* touchable maken en de detail scherm kunnen openen van die wagen */},
                     <CarCard key={index} imageUri={car.imageUri} title={car.title} subtitle={car.subtitle} />
                 ))}
             </View>
@@ -49,25 +64,18 @@ const CollectionSection = () => {
 };
 
 // Car Card Component
-const CarCard = ({ imageUri, title, subtitle }) => (
-    <View style={styles.carCard}>
-        <Image source={{ uri: imageUri }} style={styles.carImage} />
-        <Text style={styles.carDetails}>{title}</Text>
-        <Text style={styles.carSubDetails}>{subtitle}</Text>
-    </View>
-);
+const CarCard = ({ imageUri, title, subtitle }) => {
+    const { isDarkTheme } = useTheme();
+    const dynamicStyles = createStyles(isDarkTheme);
 
-// Header Component
-const Header = () => (
-    <View style={styles.header}>
-        <Text style={styles.logo}>Kalymarym</Text>
-        <View style={styles.navLinks}>
-            <Text style={styles.navLink}>Home</Text>
-            <Text style={styles.navLink}>Collection</Text>
-        </View>
-        <Icon name="user" size={20} color="#C67C4E" style={styles.icon} />
+    return (
+    <View style={dynamicStyles.carCard}>
+        <Image source={{ uri: imageUri }} style={dynamicStyles.carImage} />
+        <Text style={dynamicStyles.carDetails}>{title}</Text>
+        <Text style={dynamicStyles.carSubDetails}>{subtitle}</Text>
     </View>
 );
+}
 
 // Footer Component
 const Footer = () => (
@@ -77,22 +85,26 @@ const Footer = () => (
     </View>
 );
 
+const createStyles = (isDarkTheme) =>
+    StyleSheet.create({
+        container: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', flex: 1 },
+        collectionSection: { padding: 16, backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED' },
+        collectionTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
+        collectionCars: { flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between' },
+        
+        carCard: { width: '100%', backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', marginVertical: 10, borderRadius: 8, padding: 10 },
+        carImage: { width: '100%', height: 120, borderRadius: 8 },
+        carDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
+        carSubDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131' },
+        seeAllButton: { alignItems: 'center', marginTop: 10 },
+        seeAllText: { color: '#C67C4E' },
+
+        searchContainer: { flexDirection: 'row', marginTop: 20, backgroundColor: isDarkTheme ? '#555' : '#E3E3E3', borderRadius: 8 },
+        searchInput: { flex: 1, padding: 8, color: isDarkTheme ? '#EDD6C8' : '#313131' },
+        searchIcon: { padding: 10 },
+    });
+
 const styles = StyleSheet.create({
-    container: { backgroundColor: '#F9F2ED', flex: 1 },
-    collectionSection: { padding: 16, backgroundColor: '#313131' },
-    collectionTitle: { color: '#EDD6C8', fontSize: 20, fontWeight: 'bold' },
-    collectionCars: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
-    carCard: { width: '48%', backgroundColor: '#EDD6C8', marginVertical: 10, borderRadius: 8, padding: 10 },
-    carImage: { width: '100%', height: 120, borderRadius: 8 },
-    carDetails: { color: '#313131', marginTop: 10 },
-    carSubDetails: { color: '#313131' },
-    seeAllButton: { alignItems: 'center', marginTop: 10 },
-    seeAllText: { color: '#C67C4E' },
-    header: { flexDirection: 'row', justifyContent: 'space-between', padding: 16, backgroundColor: '#313131' },
-    logo: { color: '#EDD6C8', fontSize: 18 },
-    navLinks: { flexDirection: 'row' },
-    navLink: { color: '#E3E3E3', marginHorizontal: 10 },
-    icon: { marginRight: 10 },
     footer: { padding: 16, backgroundColor: '#313131' },
     footerText: { color: '#EDD6C8', marginTop: 10 },
     footerCopy: { color: '#E3E3E3', fontSize: 12, marginTop: 10 },

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Switch, StyleSheet, Picker, ScrollView, useColorScheme } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React, { useState } from 'react';
+import { View, Text, Switch, StyleSheet, Picker, ScrollView } from 'react-native';
 import { useTheme } from '../ContextAPI';
 
 const SettingsScreen = () => {
@@ -13,7 +12,6 @@ const SettingsScreen = () => {
     return (
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollContainer}>
-                <Header styles={styles} />
 
                 <View style={styles.settingsSection}>
                     <Text style={styles.settingsTitle}>Theme</Text>
@@ -24,22 +22,6 @@ const SettingsScreen = () => {
                             onValueChange={toggleTheme}
                             thumbColor={isDarkTheme ? '#C67C4E' : '#E3E3E3'}
                         />
-                    </View>
-                </View>
-
-                <View style={styles.settingsSection}>
-                    <Text style={styles.settingsTitle}>Language</Text>
-                    <View style={styles.settingItem}>
-                        <Text style={styles.settingLabel}>Select Language</Text>
-                        <Picker
-                            selectedValue={selectedLanguage}
-                            onValueChange={(itemValue) => setSelectedLanguage(itemValue)}
-                            style={styles.picker}
-                        >
-                            <Picker.Item label="English" value="en" />
-                            <Picker.Item label="Dutch" value="nl" />
-                            <Picker.Item label="French" value="fr" />
-                        </Picker>
                     </View>
                 </View>
 
@@ -63,17 +45,6 @@ const SettingsScreen = () => {
         </View>
     );
 };
-
-const Header = ({ styles }) => (
-    <View style={styles.header}>
-        <Text style={styles.logo}>Kalymarym</Text>
-        <View style={styles.navLinks}>
-            <Text style={styles.navLink}>Home</Text>
-            <Text style={styles.navLink}>Collection</Text>
-        </View>
-        <Icon name="user" size={20} color="#C67C4E" style={styles.icon} />
-    </View>
-);
 
 const Footer = ({ styles }) => (
     <View style={styles.footer}>

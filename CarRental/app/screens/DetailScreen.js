@@ -6,23 +6,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const DetailScreen = () => (
     <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
-            <Header />
             <CarDetailSection />
             <RentalInfoSection />
         </ScrollView>
         <Footer />
-    </View>
-);
-
-// Header Component
-const Header = () => (
-    <View style={styles.header}>
-        <Text style={styles.logo}>Kalymarym</Text>
-        <View style={styles.navLinks}>
-            <Text style={styles.navLink}>Home</Text>
-            <Text style={styles.navLink}>Collection</Text>
-        </View>
-        <Icon name="user" size={20} color="#C67C4E" style={styles.icon} />
     </View>
 );
 
@@ -114,7 +101,7 @@ const styles = StyleSheet.create({
 
     footer: { backgroundColor: '#313131', padding: 16, alignItems: 'center' },
     footerText: { color: '#EDD6C8', marginTop: 10 },
-    footerCopy: { color: '#E3E3E3', fontSize: 12, marginTop: 10 },
+    footerCopy: { color: '#EDD6C8', fontSize: 12, marginTop: 10 },
 });
 
 export default DetailScreen;
