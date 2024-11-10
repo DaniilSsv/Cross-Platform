@@ -25,7 +25,7 @@ const CollectionScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.collectionSection}>
-                <Text style={styles.collectionTitle}>OUR COLLECTION</Text>
+                <Text style={styles.collectionTitle}>OUR VEHICLES</Text>
                 <SearchBar styles={styles} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
             </View>
             <ScrollView style={styles.container}>

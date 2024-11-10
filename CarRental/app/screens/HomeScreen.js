@@ -26,7 +26,6 @@ const Banner = ({styles}) => (
         <View style={styles.bannerTextContainer}>
             <Text style={styles.bannerTitle}>Drive your dream car</Text>
             <Text style={styles.bannerSubtitle}>Over 20 New Models</Text>
-            <Button title='Rent now' color='#313131'/>
         </View>
     </View>
 );
