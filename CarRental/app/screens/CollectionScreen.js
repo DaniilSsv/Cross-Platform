@@ -1,13 +1,13 @@
 import React, { useState, useEffect} from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useTheme } from '../ContextAPI';
+import { useTheme } from '../Context/ContextAPI';
 import cars from '../json/cars.json'; // collectie te vullen
 
 // Collection Screen
 const CollectionScreen = () => {
     const { isDarkTheme } = useTheme();
-    const dynamicStyles = createStyles(isDarkTheme);
+    const styles = getStyles(isDarkTheme);
 
     //state
     const [searchQuery, setSearchQuery] = useState('');
@@ -23,40 +23,36 @@ const CollectionScreen = () => {
     }, [searchQuery]);
 
     return (
-    <ScrollView style={dynamicStyles.container}>
-        <CollectionSection cars={filteredCars} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-        <Footer />
-    </ScrollView>
-    );
-};
-
-// Searchbar Component
-const SearchBar = ({searchQuery, setSearchQuery}) => {
-    const { isDarkTheme } = useTheme();
-    const dynamicStyles = createStyles(isDarkTheme);
-    
-    return (
-        <View style={dynamicStyles.searchContainer}>
-            <TextInput value={searchQuery} onChangeText={setSearchQuery} placeholder={"What are you looking for?"} placeholderTextColor={isDarkTheme ? "#E3E3E3" : "#313131"} style={dynamicStyles.searchInput} />
-            <Icon name="search" size={20} color={isDarkTheme ? "#EDD6C8" : "#313131"} style={dynamicStyles.searchIcon} />
+        <View style={styles.container}>
+            <View style={styles.collectionSection}>
+                <Text style={styles.collectionTitle}>OUR COLLECTION</Text>
+                <SearchBar styles={styles} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+            </View>
+            <ScrollView style={styles.container}>
+                <CollectionSection styles={styles} cars={filteredCars} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+                <Footer styles={styles} />
+            </ScrollView>
         </View>
     );
 };
 
+// Searchbar Component
+const SearchBar = ({styles, searchQuery, setSearchQuery}) => (
+        <View style={styles.searchContainer}>
+            <TextInput value={searchQuery} onChangeText={setSearchQuery} placeholder={"What are you looking for?"} placeholderTextColor={styles.searchBarInput} style={styles.searchInput} />
+            <Icon name="search" style={styles.searchIcon} />
+        </View>
+    );
+
 // Collection Section Component
-const CollectionSection = ({cars, searchQuery, setSearchQuery}) => {
-    const { isDarkTheme } = useTheme();
-    const dynamicStyles = createStyles(isDarkTheme);
-
+const CollectionSection = ({styles, cars, searchQuery, setSearchQuery}) => {
+    
     return (
-        <View style={dynamicStyles.collectionSection}>
-            <Text style={dynamicStyles.collectionTitle}>OUR COLLECTION</Text>
-            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-
-            <View style={dynamicStyles.collectionCars}>
+        <View style={styles.collectionSection}>
+            <View style={styles.collectionCars}>
                 {cars.map((car, index) => (
                     {/* touchable maken en de detail scherm kunnen openen van die wagen */},
-                    <CarCard key={index} imageUri={car.imageUri} title={car.title} subtitle={car.subtitle} />
+                    <CarCard styles={styles} key={index} imageUri={car.imageUri} title={car.title} subtitle={car.subtitle} />
                 ))}
             </View>
         </View>
@@ -64,28 +60,26 @@ const CollectionSection = ({cars, searchQuery, setSearchQuery}) => {
 };
 
 // Car Card Component
-const CarCard = ({ imageUri, title, subtitle }) => {
-    const { isDarkTheme } = useTheme();
-    const dynamicStyles = createStyles(isDarkTheme);
-
+const CarCard = ({styles, imageUri, title, subtitle }) => {
+    
     return (
-    <View style={dynamicStyles.carCard}>
-        <Image source={{ uri: imageUri }} style={dynamicStyles.carImage} />
-        <Text style={dynamicStyles.carDetails}>{title}</Text>
-        <Text style={dynamicStyles.carSubDetails}>{subtitle}</Text>
+    <View style={styles.carCard}>
+        <Image source={{ uri: imageUri }} style={styles.carImage} />
+        <Text style={styles.carDetails}>{title}</Text>
+        <Text style={styles.carSubDetails}>{subtitle}</Text>
     </View>
 );
 }
 
 // Footer Component
-const Footer = () => (
+const Footer = ({styles}) => (
     <View style={styles.footer}>
         <Text style={styles.footerText}>Kalymarym</Text>
         <Text style={styles.footerCopy}>2024 All Rights Reserved | Terms of Use</Text>
     </View>
 );
 
-const createStyles = (isDarkTheme) =>
+const getStyles = (isDarkTheme) =>
     StyleSheet.create({
         container: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', flex: 1 },
         collectionSection: { padding: 16, backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED' },
@@ -99,15 +93,14 @@ const createStyles = (isDarkTheme) =>
         seeAllButton: { alignItems: 'center', marginTop: 10 },
         seeAllText: { color: '#C67C4E' },
 
+        searchBarInput: {color: isDarkTheme ? "#E3E3E3" : "#313131"},
         searchContainer: { flexDirection: 'row', marginTop: 20, backgroundColor: isDarkTheme ? '#555' : '#E3E3E3', borderRadius: 8 },
         searchInput: { flex: 1, padding: 8, color: isDarkTheme ? '#EDD6C8' : '#313131' },
-        searchIcon: { padding: 10 },
+        searchIcon: { padding: 10, size: 20, color: isDarkTheme ? "#EDD6C8" : "#313131" },
+        
+        footer: { backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', padding: 16, alignItems: 'center' },
+        footerText: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
+        footerCopy: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 12, marginTop: 10 },
     });
-
-const styles = StyleSheet.create({
-    footer: { padding: 16, backgroundColor: '#313131' },
-    footerText: { color: '#EDD6C8', marginTop: 10 },
-    footerCopy: { color: '#E3E3E3', fontSize: 12, marginTop: 10 },
-});
 
 export default CollectionScreen;

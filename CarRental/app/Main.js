@@ -29,7 +29,7 @@ const Header = ({ navigation, title }) => (
   </View>
 );
 
-export default function App() {
+export default function Main() {
   return (
     <ThemeProvider>
       <NavigationContainer>

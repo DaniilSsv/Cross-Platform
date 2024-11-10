@@ -1,75 +1,66 @@
 import React from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import { useTheme } from '../ContextAPI';
 import { Button } from 'react-native-web';
+import { useTheme } from '../Context/ContextAPI';
 
 // Main Component
 const HomeScreen = () => {
     const { isDarkTheme } = useTheme();
-
-    // Apply theme colors conditionally
-    const dynamicStyles = createStyles(isDarkTheme);
-
+    const styles = getStyles(isDarkTheme);
+    
     return (
-        <ScrollView style={dynamicStyles.container}>
-            <Banner />
-            <PopularCars />
-            <Footer />
+        <ScrollView style={styles.container}>
+            <View>
+                <Banner styles={styles}/>
+                <PopularCars styles={styles}/>
+                <Footer styles={styles} />
+            </View>
         </ScrollView>
     );
 };
 
 // Banner Component
-const Banner = () => {
-    const { isDarkTheme } = useTheme();
-    const dynamicStyles = createStyles(isDarkTheme);
-    
-    return (
-        <View style={dynamicStyles.banner}>
-            <Image source={require('../assets/CarBanner.jpg')} style={dynamicStyles.bannerImage} />
-            <View style={dynamicStyles.bannerTextContainer}>
-                <Text style={dynamicStyles.bannerTitle}>Drive your dream car</Text>
-                <Text style={dynamicStyles.bannerSubtitle}>Over 20 New Models</Text>
-                <Button title='Rent now' color='#313131'/>
-            </View>
+const Banner = ({styles}) => (
+    <View style={styles.banner}>
+        <Image source={require('../assets/CarBanner.jpg')} style={styles.bannerImage} />
+        <View style={styles.bannerTextContainer}>
+            <Text style={styles.bannerTitle}>Drive your dream car</Text>
+            <Text style={styles.bannerSubtitle}>Over 20 New Models</Text>
+            <Button title='Rent now' color='#313131'/>
         </View>
-    );
-};
+    </View>
+);
 
 
 
 // Popular Cars Section Component
-const PopularCars = () => {
-    const { isDarkTheme } = useTheme();
-    const dynamicStyles = createStyles(isDarkTheme);
+const PopularCars = ({styles}) => {
     
     return (
-        <View style={dynamicStyles.popularSection}>
-            <Text style={dynamicStyles.popularTitle}>MOST POPULAR</Text>
-            <View style={dynamicStyles.popularCars}>
+        <View style={styles.popularSection}>
+            <Text style={styles.popularTitle}>MOST POPULAR</Text>
+            <View style={styles.popularCars}>
                 {['path/to/car1', 'path/to/car2', 'path/to/car3', 'path/to/car4'].map((uri, index) => (
-                    <CarCard key={index} imageUri={uri} title="Car Title" subtitle="Year - 2021 | KMS - 25000 | Fuel Type - Petrol" />
+                    <CarCard styles={styles} key={index} imageUri={uri} title="Car Title" subtitle="Year - 2021 | KMS - 25000 | Fuel Type - Petrol" />
                 ))}
             </View>
         </View>
     );
 };
 
-const CarCard = ({ imageUri, title, subtitle }) => {
-    const { isDarkTheme } = useTheme();
-    const dynamicStyles = createStyles(isDarkTheme);
+const CarCard = ({styles, imageUri, title, subtitle }) => {
     
     return (
-        <View style={dynamicStyles.carCard}>
-            <Image source={{ uri: imageUri }} style={dynamicStyles.carImage} />
-            <Text style={dynamicStyles.carDetails}>{title}</Text>
-            <Text style={dynamicStyles.carSubDetails}>{subtitle}</Text>
+        <View style={styles.carCard}>
+            <Image source={{ uri: imageUri }} style={styles.carImage} />
+            <Text style={styles.carDetails}>{title}</Text>
+            <Text style={styles.carSubDetails}>{subtitle}</Text>
         </View>
     );
 };
 
 // Footer Component
-const Footer = () => (
+const Footer = ({styles}) => (
     <View style={styles.footer}>
         <Text style={styles.footerText}>Kalymarym</Text>
         <Text style={styles.footerCopy}>2024 All Rights Reserved | Terms of Use</Text>
@@ -77,7 +68,7 @@ const Footer = () => (
 );
 
 // Styles
-const createStyles = (isDarkTheme) =>
+const getStyles = (isDarkTheme) =>
     StyleSheet.create({
         container: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', flex: 1 },
 
@@ -97,12 +88,10 @@ const createStyles = (isDarkTheme) =>
         carSubDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131' },
         seeAllButton: { alignItems: 'center', marginTop: 10 },
         seeAllText: { color: '#C67C4E' },
-    });
 
-const styles = StyleSheet.create({
-    footer: { backgroundColor: '#313131', padding: 16, alignItems: 'center' },
-    footerText: { color: '#EDD6C8', marginTop: 10 },
-    footerCopy: { color: '#EDD6C8', fontSize: 12, marginTop: 10 },
-});
+        footer: { backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', padding: 16, alignItems: 'center' },
+        footerText: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
+        footerCopy: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 12, marginTop: 10 },
+    });
 
 export default HomeScreen;
