@@ -1,24 +1,26 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet, ScrollView } from 'react-native';
+import { useTheme } from '../Context/ContextAPI';
 
 // Detail Screen
-const DetailScreen = () =>  {
-    const { isDarkTheme, toggleTheme } = useTheme();
+const DetailScreen = () => {
+    const { isDarkTheme } = useTheme();
     const styles = getStyles(isDarkTheme);
 
-    return(
-    <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-            <CarDetailSection />
-            <RentalInfoSection />
-        </ScrollView>
-        <Footer />
-    </View>
+    return (
+        <View style={styles.container}>
+            <View>
+                <CarDetailSection styles={styles} />
+                <DealerInfoSection styles={styles} />
+                <RentalInfoSection styles={styles} />
+            </View> 
+            <Footer styles={styles} />
+        </View>
     );
 };
 
 // Car Detail Section Component
-const CarDetailSection = ({styles}) => (
+const CarDetailSection = ({ styles }) => (
     <View style={styles.detailSection}>
         <Image source={{ uri: 'path/to/car-image.jpg' }} style={styles.carImage} />
         <Text style={styles.carTitle}>Car Model: Tesla Model S</Text>
@@ -30,8 +32,19 @@ const CarDetailSection = ({styles}) => (
     </View>
 );
 
+// Dealer Info Section Component
+const DealerInfoSection = ({ styles }) => (
+    <View style={styles.dealerSection}>
+        <Text style={styles.dealerTitle}>Dealer Information</Text>
+        <Text style={styles.dealerName}>Dealer Name: Elite Motors</Text>
+        <Text style={styles.dealerAddress}>Address: 123 Luxury Ave</Text>
+        <Text style={styles.dealerCity}>City: Kortrijk, Belgium</Text>
+        <Text style={styles.dealerContact}>Contact: +32 12 345 678</Text>
+    </View>
+);
+
 // Rental Info Section Component
-const RentalInfoSection = ({styles}) => (
+const RentalInfoSection = ({ styles }) => (
     <View style={styles.rentalSection}>
         <Text style={styles.rentalTitle}>Rent this Car</Text>
         
@@ -68,23 +81,29 @@ const RentalInfoSection = ({styles}) => (
 );
 
 // Footer Component
-const Footer = ({styles}) => (
+const Footer = ({ styles }) => (
     <View style={styles.footer}>
         <Text style={styles.footerText}>Kalymarym</Text>
         <Text style={styles.footerCopy}>2024 All Rights Reserved | Terms of Use</Text>
     </View>
 );
 
-const getStyles = (isDarkTheme) => 
+const getStyles = (isDarkTheme) =>
     StyleSheet.create({
         container: { flex: 1, backgroundColor: '#F9F2ED' },
-        scrollContainer: { flexGrow: 1 },
-        
+
         detailSection: { padding: 16, backgroundColor: '#EDD6C8' },
         carImage: { width: '100%', height: 200, borderRadius: 8, marginBottom: 0 },
         carTitle: { color: '#313131', fontSize: 24, fontWeight: 'bold', marginTop: 10 },
         carSpecs: { color: '#313131', fontSize: 16, marginTop: 5 },
         carDescription: { color: '#313131', marginTop: 10 },
+
+        dealerSection: { padding: 16, backgroundColor: '#F9F2ED', marginVertical: 10 },
+        dealerTitle: { color: '#313131', fontSize: 20, fontWeight: 'bold', marginBottom: 5 },
+        dealerName: { color: '#313131', fontSize: 16 },
+        dealerAddress: { color: '#313131', fontSize: 16 },
+        dealerCity: { color: '#313131', fontSize: 16 },
+        dealerContact: { color: '#313131', fontSize: 16 },
 
         rentalSection: { padding: 16, backgroundColor: '#313131', marginTop: 0 },
         rentalTitle: { color: '#EDD6C8', fontSize: 20, fontWeight: 'bold' },

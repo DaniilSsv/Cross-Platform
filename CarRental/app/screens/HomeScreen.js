@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import { Button } from 'react-native-web';
+import { useNavigation } from '@react-navigation/native';
+import popular from '../json/popular.json'
 import { useTheme } from '../Context/ContextAPI';
 
 // Main Component
@@ -30,17 +31,23 @@ const Banner = ({styles}) => (
     </View>
 );
 
-
-
 // Popular Cars Section Component
 const PopularCars = ({styles}) => {
-    
+    const navigation = useNavigation();
     return (
         <View style={styles.popularSection}>
             <Text style={styles.popularTitle}>MOST POPULAR</Text>
             <View style={styles.popularCars}>
-                {['path/to/car1', 'path/to/car2', 'path/to/car3', 'path/to/car4'].map((uri, index) => (
-                    <CarCard styles={styles} key={index} imageUri={uri} title="Car Title" subtitle="Year - 2021 | KMS - 25000 | Fuel Type - Petrol" />
+                {popular.map((car) => (
+                    <TouchableOpacity key={car.id} style={styles.carCard} activeOpacity={0.8} onPress={() => navigation.navigate('CarDetails', { car })}>
+                        <CarCard
+                            key={car.id}
+                            styles={styles}
+                            imageUri={car.imageUri}
+                            title={car.title}
+                            subtitle={`${car.year} | ${car.hp} hp | ${car.fuelType}`}
+                        />
+                    </TouchableOpacity>
                 ))}
             </View>
         </View>
@@ -50,7 +57,7 @@ const PopularCars = ({styles}) => {
 const CarCard = ({styles, imageUri, title, subtitle }) => {
     
     return (
-        <View style={styles.carCard}>
+        <View>
             <Image source={{ uri: imageUri }} style={styles.carImage} />
             <Text style={styles.carDetails}>{title}</Text>
             <Text style={styles.carSubDetails}>{subtitle}</Text>

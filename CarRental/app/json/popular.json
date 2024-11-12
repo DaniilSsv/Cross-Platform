@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "title": "Mercedes-Benz S-Class",
+      "imageUri": "path/to/luxury_car1",
+      "year": 2022,
+      "kms": 15000,
+      "fuelType": "Petrol",
+      "hp": 710
+    },
+    {
+      "id": 2,
+      "title": "BMW 7 Series",
+      "imageUri": "path/to/luxury_car2",
+      "year": 2021,
+      "kms": 20000,
+      "fuelType": "Diesel",
+      "hp": 620
+    },
+    {
+      "id": 3,
+      "title": "Audi A8",
+      "imageUri": "path/to/luxury_car3",
+      "year": 2023,
+      "kms": 10000,
+      "fuelType": "Hybrid",
+      "hp": 580
+    },
+    {
+      "id": 4,
+      "title": "Porsche Panamera",
+      "imageUri": "path/to/luxury_car4",
+      "year": 2023,
+      "kms": 5000,
+      "fuelType": "Electric",
+      "hp": 450
+    }
+]
+  

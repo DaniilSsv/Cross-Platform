@@ -54,10 +54,10 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="Details"
+            name="CarDetails"
             component={DetailScreen}
             options={{
-              header: ({ navigation }) => <Header navigation={navigation} title="Details" />,
+              header: ({ navigation }) => <Header navigation={navigation} title="CarDetails" />,
             }}
           />
           <Stack.Screen
