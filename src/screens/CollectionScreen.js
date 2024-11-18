@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
 // Theme
 import { useTheme } from '../theme/ContextAPI';
-
+// JSON
 import cars from '../json/cars.json';
 
-// Replace `SearchBar` with a custom component or import a valid library component
+// Components
 import SearchBar from '../component/SearchBar';
 import Footer from '../component/Footer';
 import CollectionList from '../component/CollectionSection';

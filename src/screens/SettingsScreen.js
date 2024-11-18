@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet, Picker, ScrollView } from 'react-native';
 import { useTheme } from '../theme/ContextAPI';
 
+//components
+import Footer from '../component/Footer';
+
 const SettingsScreen = () => {
     const { isDarkTheme, toggleTheme } = useTheme();
     const styles = getStyles(isDarkTheme);
@@ -44,13 +47,6 @@ const SettingsScreen = () => {
         </View>
     );
 };
-
-const Footer = ({ styles }) => (
-    <View style={styles.footer}>
-        <Text style={styles.footerText}>Kalymarym</Text>
-        <Text style={styles.footerCopy}>2024 All Rights Reserved | Terms of Use</Text>
-    </View>
-);
 
 const getStyles = (isDarkTheme) =>
     StyleSheet.create({

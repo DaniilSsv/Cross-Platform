@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { useTheme } from '../theme/ContextAPI';
+
+// Components
 import Banner from '../component/Banner'
 import PopularCars from '../component/PopularCars';
 import Footer from '../component/Footer';
