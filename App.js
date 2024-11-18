@@ -1,11 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import HomeScreen from './app/screens/HomeScreen';
-import CollectionScreen from './app/screens/CollectionScreen';
-import DetailScreen from './app/screens/DetailScreen';
-import SettingsScreen from './app/screens/SettingsScreen';
-import { ThemeProvider, useTheme } from './app/Context/ContextAPI';
+
+// Screens
+import HomeScreen from './src/screens/HomeScreen';
+import CollectionScreen from './src/screens/CollectionScreen';
+import DetailScreen from './src/screens/DetailScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
+
+// Theme
+import { ThemeProvider, useTheme } from './src/theme/ContextAPI';
+
+// Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 

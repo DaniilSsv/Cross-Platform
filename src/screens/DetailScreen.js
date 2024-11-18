@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet, ScrollView } from 'react-native';
-import { useTheme } from '../Context/ContextAPI';
+import { useTheme } from '../theme/ContextAPI';
 
 // Detail Screen
 const DetailScreen = () => {

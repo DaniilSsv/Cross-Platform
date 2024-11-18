@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet, Picker, ScrollView } from 'react-native';
-import { useTheme } from '../Context/ContextAPI';
+import { useTheme } from '../theme/ContextAPI';
 
 const SettingsScreen = () => {
     const { isDarkTheme, toggleTheme } = useTheme();
