@@ -19,8 +19,8 @@ const CollectionList = ({ styles, cars }) => {
                         <CarCard
                             styles={styles}
                             imageUri={car.imageUri}
-                            title={car.title}
-                            subtitle={`${car.year} | ${car.hp} hp | ${car.fuelType}`} // Match PopularCars formatting
+                            title={`${car.brand} | ${car.model} `}
+                            subtitle={`${car.year} | ${car.power} hp | ${car.color}`} // Match PopularCars formatting
                         />
                     </TouchableOpacity>
                 ))}

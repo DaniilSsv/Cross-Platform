@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator  } from 'react-native';
 
 // Theme
 import { useTheme } from '../theme/ContextAPI';
-// JSON
-import cars from '../json/cars.json';
 
 // Components
 import SearchBar from '../component/SearchBar';
@@ -15,16 +13,47 @@ const CollectionScreen = () => {
     const { isDarkTheme } = useTheme();
     const styles = getStyles(isDarkTheme);
 
+    const [cars, setCars] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
-    const [filteredCars, setFilteredCars] = useState(cars);
+    const [filteredCars, setFilteredCars] = useState([]);
+
+    useEffect(() => {
+        // Fetch cars from the API
+        const fetchCars = async () => {
+            try {
+                const response = await fetch('https://stormy-mountain-53708-efbddb5e7d01.herokuapp.com/api/cars');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch cars');
+                }
+                const data = await response.json();
+                setCars(data);
+                setFilteredCars(data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchCars();
+    }, []);
 
     useEffect(() => {
         const filtered = cars.filter(car =>
-            car.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            car.subtitle.toLowerCase().includes(searchQuery.toLowerCase())
+            car.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            car.model.toLowerCase().includes(searchQuery.toLowerCase())
         );
         setFilteredCars(filtered);
-    }, [searchQuery]);
+    }, [searchQuery, cars]);
+
+    if (isLoading) {
+        return (
+            <View style={styles.container}>
+                <ActivityIndicator size="large" color={isDarkTheme ? '#EDD6C8' : '#313131'} />
+            </View>
+        );
+    }
 
     return (
         <View style={styles.container}>
