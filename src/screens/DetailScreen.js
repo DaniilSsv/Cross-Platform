@@ -1,6 +1,12 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet} from 'react-native';
 import { useTheme } from '../theme/ContextAPI';
+
+// Components
+import CarDetailSection from '../component/CarDetailSection';
+import DealerInfoSection from '../component/DealerInfoSection';
+import RentalInfoSection from '../component/RentalInfoSection';
+import Footer from '../component/Footer';
 
 // Detail Screen
 const DetailScreen = () => {
@@ -18,75 +24,6 @@ const DetailScreen = () => {
         </View>
     );
 };
-
-// Car Detail Section Component
-const CarDetailSection = ({ styles }) => (
-    <View style={styles.detailSection}>
-        <Image source={{ uri: 'path/to/car-image.jpg' }} style={styles.carImage} />
-        <Text style={styles.carTitle}>Car Model: Tesla Model S</Text>
-        <Text style={styles.carSpecs}>Year: 2023 | Mileage: 10,000 km | Fuel Type: Electric</Text>
-        <Text style={styles.carDescription}>
-            The Tesla Model S is a sleek electric sedan with autopilot capabilities, a range of 370 miles per charge,
-            and cutting-edge safety features. Ideal for both city and highway driving.
-        </Text>
-    </View>
-);
-
-// Dealer Info Section Component
-const DealerInfoSection = ({ styles }) => (
-    <View style={styles.dealerSection}>
-        <Text style={styles.dealerTitle}>Dealer Information</Text>
-        <Text style={styles.dealerName}>Dealer Name: Elite Motors</Text>
-        <Text style={styles.dealerAddress}>Address: 123 Luxury Ave</Text>
-        <Text style={styles.dealerCity}>City: Kortrijk, Belgium</Text>
-        <Text style={styles.dealerContact}>Contact: +32 12 345 678</Text>
-    </View>
-);
-
-// Rental Info Section Component
-const RentalInfoSection = ({ styles }) => (
-    <View style={styles.rentalSection}>
-        <Text style={styles.rentalTitle}>Rent this Car</Text>
-        
-        {/* Rental Price */}
-        <View style={styles.rentalRow}>
-            <Text style={styles.label}>Rental Price:</Text>
-            <Text style={styles.price}>€100/day</Text>
-        </View>
-        
-        {/* Date Selection */}
-        <View style={styles.rentalRow}>
-            <Text style={styles.label}>Select Rental Dates:</Text>
-            <TextInput placeholder="Start Date" style={styles.dateInput} />
-            <TextInput placeholder="End Date" style={styles.dateInput} />
-        </View>
-        
-        {/* Location */}
-        <View style={styles.rentalRow}>
-            <Text style={styles.label}>Pickup Location:</Text>
-            <Text style={styles.location}>Kortrijk, Belgium</Text>
-        </View>
-
-        {/* Deposit */}
-        <View style={styles.rentalRow}>
-            <Text style={styles.label}>Deposit:</Text>
-            <Text style={styles.deposit}>€500</Text>
-        </View>
-        
-        {/* Confirm Button */}
-        <TouchableOpacity style={styles.confirmButton}>
-            <Text style={styles.confirmText}>Confirm Rental</Text>
-        </TouchableOpacity>
-    </View>
-);
-
-// Footer Component
-const Footer = ({ styles }) => (
-    <View style={styles.footer}>
-        <Text style={styles.footerText}>Kalymarym</Text>
-        <Text style={styles.footerCopy}>2024 All Rights Reserved | Terms of Use</Text>
-    </View>
-);
 
 const getStyles = (isDarkTheme) =>
     StyleSheet.create({

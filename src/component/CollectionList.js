@@ -3,7 +3,7 @@ import { View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // For navigation
 import CarCard from './CarCard';
 
-const CollectionSection = ({ styles, cars }) => {
+const CollectionList = ({ styles, cars }) => {
     const navigation = useNavigation(); // Navigation instance
 
     return (
@@ -29,4 +29,4 @@ const CollectionSection = ({ styles, cars }) => {
     );
 };
 
-export default CollectionSection;
+export default CollectionList;

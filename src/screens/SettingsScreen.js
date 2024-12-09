@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Switch, StyleSheet, Picker, ScrollView } from 'react-native';
+import { View, Text, Switch, StyleSheet, ScrollView } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { useTheme } from '../theme/ContextAPI';
 
 //components

@@ -9,7 +9,7 @@ import cars from '../json/cars.json';
 // Components
 import SearchBar from '../component/SearchBar';
 import Footer from '../component/Footer';
-import CollectionList from '../component/CollectionSection';
+import CollectionList from '../component/CollectionList';
 
 const CollectionScreen = () => {
     const { isDarkTheme } = useTheme();

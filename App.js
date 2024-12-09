@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // Screens
@@ -9,68 +9,69 @@ import DetailScreen from './src/screens/DetailScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 
 // Theme
-import { ThemeProvider, useTheme } from './src/theme/ContextAPI';
+import { ThemeProvider } from './src/theme/ContextAPI';
 
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+  
+// Tab Navigator
+const MainTabNavigator = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color }) => {
+          let iconName;
 
-// Custom Header Component
-const Header = ({ navigation, title }) => {
-  const { isDarkTheme } = useTheme();
-  const styles = getStyles(isDarkTheme);
+          if (route.name === 'Home') {
+            iconName = 'home';
+          } else if (route.name === 'Collection') {
+            iconName = 'car';
+          } else if (route.name === 'Settings') {
+            iconName = 'cogs';
+          }
 
-  return(
-    <View style={styles.header}>
-      <Text style={styles.logo}>{title}</Text>
-      <View style={styles.navLinks}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Text style={styles.navLink}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Collection')}>
-          <Text style={styles.navLink}>Fleet</Text>
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-        <Icon name="user" size={20} color="#C67C4E" style={styles.icon} />
-      </TouchableOpacity>
-    </View>
+          return <Icon name={iconName} size={20} color={color} />;
+        },
+        tabBarStyle: {
+          backgroundColor: '#313131', // Dark theme background
+        },
+        tabBarActiveTintColor: '#C67C4E',
+        tabBarInactiveTintColor: '#E3E3E3',
+        headerShown: false, // Hide header in Tab views
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Collection" component={CollectionScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
   );
 };
 
+// App Component
 export default function App() {
   return (
     <ThemeProvider>
       <NavigationContainer>
         <Stack.Navigator>
+          {/* Main Tabs */}
           <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              header: ({ navigation }) => <Header navigation={navigation} title="Kalymarym" />,
-            }}
+            name="MainTabs"
+            component={MainTabNavigator}
+            options={{ headerShown: false }} // Hide header for the tab view
           />
-          <Stack.Screen
-            name="Collection"
-            component={CollectionScreen}
-            options={{
-              header: ({ navigation }) => <Header navigation={navigation} title="Collection" />,
-            }}
-          />
+          {/* Additional Screens */}
           <Stack.Screen
             name="CarDetails"
             component={DetailScreen}
             options={{
-              header: ({ navigation }) => <Header navigation={navigation} title="CarDetails" />,
-            }}
-          />
-          <Stack.Screen
-            name="Settings"
-            component={SettingsScreen}
-            options={{
-              header: ({ navigation }) => <Header navigation={navigation} title="Settings" />,
+              headerStyle: { backgroundColor: '#313131' },
+              headerTintColor: '#EDD6C8',
+              title: 'Car Details',
             }}
           />
         </Stack.Navigator>
