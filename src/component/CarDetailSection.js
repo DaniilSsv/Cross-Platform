@@ -1,16 +1,16 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 
-const CarDetailSection = ({ styles }) => (
+const CarDetailSection = ({ styles, carDealer }) => {
+    console.log(carDealer);
+    
+    return(
     <View style={styles.detailSection}>
-        <Image source={{ uri: 'path/to/car-image.jpg' }} style={styles.carImage} />
-        <Text style={styles.carTitle}>Car Model: Tesla Model S</Text>
-        <Text style={styles.carSpecs}>Year: 2023 | Mileage: 10,000 km | Fuel Type: Electric</Text>
-        <Text style={styles.carDescription}>
-            The Tesla Model S is a sleek electric sedan with autopilot capabilities, a range of 370 miles per charge,
-            and cutting-edge safety features. Ideal for both city and highway driving.
-        </Text>
+        <Image source={{ uri: carDealer.imageUri }} style={styles.carImage} />
+        <Text style={styles.carTitle}>Car Model: {carDealer.brand} {carDealer.model}</Text>
+        <Text style={styles.carSpecs}>Year: {carDealer.year} | Power: {carDealer.power} HP | Color: {carDealer.color}</Text>
+        <Text style={styles.carDescription}>{carDealer.description}</Text>
     </View>
-);
+)};
 
 export default CarDetailSection;

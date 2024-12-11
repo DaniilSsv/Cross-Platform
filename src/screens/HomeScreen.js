@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { useTheme } from '../theme/ContextAPI';
 
 // Components
@@ -13,19 +13,26 @@ const HomeScreen = () => {
     const styles = getStyles(isDarkTheme);
     
     return (
-        <ScrollView style={styles.container}>
-            <View>
-                <Banner styles={styles}/>
-                <PopularCars styles={styles}/>
-                <Footer styles={styles} />
-            </View>
-        </ScrollView>
+        <SafeAreaView style={styles.safeArea}>
+            <StatusBar/>
+            <ScrollView style={styles.container}>
+                <View>
+                    <Banner styles={styles}/>
+                    <PopularCars styles={styles}/>
+                    <Footer styles={styles} />
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 
 // Styles
 const getStyles = (isDarkTheme) =>
     StyleSheet.create({
+        safeArea: {
+            flex: 1,
+            backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', // Matches the screen background
+        },
         container: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', flex: 1 },
 
         banner: { position: 'relative' },
@@ -38,7 +45,7 @@ const getStyles = (isDarkTheme) =>
         popularTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
         popularCars: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
 
-        carCard: { width: '48%', backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', marginVertical: 10, borderRadius: 8, padding: 10 },
+        carCard: { width: '48%', backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', marginVertical: 10, borderRadius: 8, padding: 10, overflow: 'hidden'},
         carImage: { width: '100%', height: 120, borderRadius: 8 },
         carDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
         carSubDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131' },

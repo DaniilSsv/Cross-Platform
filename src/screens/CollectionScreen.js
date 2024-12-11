@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, ActivityIndicator  } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator, SafeAreaView } from 'react-native';
 
 // Theme
 import { useTheme } from '../theme/ContextAPI';
@@ -56,6 +56,7 @@ const CollectionScreen = () => {
     }
 
     return (
+        <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
             <View style={styles.collectionList}>
                 <Text style={styles.collectionTitle}>OUR VEHICLES</Text>
@@ -71,10 +72,15 @@ const CollectionScreen = () => {
                 <Footer styles={styles} />
             </ScrollView>
         </View>
+        </SafeAreaView>
     );
 };
 
 const getStyles = (isDarkTheme) => StyleSheet.create({
+    safeArea: {
+        flex: 1,
+        backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', // Matches the screen background
+    },
     container: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', flex: 1 },
     collectionSection: { padding: 16, backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED' },
     collectionTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },

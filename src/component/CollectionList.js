@@ -14,7 +14,10 @@ const CollectionList = ({ styles, cars }) => {
                         key={index} 
                         style={styles.carCard} 
                         activeOpacity={0.8} 
-                        onPress={() => navigation.navigate('CarDetails', { car })}
+                        onPress={() => {
+                            console.log('Navigating with carId:', car.id); 
+                            navigation.navigate('CarDetails', { car })}
+                        }
                     >
                         <CarCard
                             styles={styles}
