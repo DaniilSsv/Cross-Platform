@@ -41,29 +41,4 @@ const MainTabNavigator = () => {
     );
   };
 
-  const getStyles = (isDarkTheme) =>
-    StyleSheet.create({
-    header: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: 16,
-      backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8',
-    },
-    logo: {
-      color: isDarkTheme ? '#EDD6C8' : '#313131',
-      fontSize: 18,
-    },
-    navLinks: {
-      flexDirection: 'row',
-    },
-    navLink: {
-      color: isDarkTheme ? '#EDD6C8' : '#313131',
-      marginHorizontal: 10,
-    },
-    icon: {
-      marginRight: 10,
-    },
-  });
-  
   export default MainTabNavigator;
