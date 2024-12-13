@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, ActivityIndicator, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
@@ -58,39 +58,36 @@ const CollectionScreen = () => {
 
     return (
         <SafeAreaView style={styles.safeArea}>
-      <FlatList
-        data={filteredCars}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.carCardCollection}
-            activeOpacity={0.8}
-            onPress={() => console.log('Navigating with carId:', item.id)}
-          >
-            <CarCard
-              styles={styles}
-              imageUri={item.imageUri}
-              title={`${item.brand} | ${item.model}`}
-              subtitle={`${item.year} | ${item.power} hp | ${item.color}`}
-            />
-          </TouchableOpacity>
-        )}
-        contentContainerStyle={styles.collectionSection}
-        ListHeaderComponent={() => (
-          <View style={styles.collectionHeader}>
-            <Text style={styles.collectionTitle}>OUR VEHICLES</Text>
-            <SearchBar
-              placeholder="Search for cars..."
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              styles={styles}
-            />
-          </View>
-        )}
-        ListFooterComponent={<Footer styles={styles} />}
-      />
-    </SafeAreaView>
-  );
+            <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+                <View style={styles.collectionHeader}>
+                    <Text style={styles.collectionTitle}>OUR VEHICLES</Text>
+                    <SearchBar
+                        placeholder="Search for cars..."
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
+                        styles={styles}
+                    />
+                </View>
+                {filteredCars.map((item) => (
+                    <TouchableOpacity
+                        key={item.id.toString()}
+                        style={styles.carCardCollection}
+                        activeOpacity={0.8}
+                        onPress={() => console.log('Navigating with carId:', item.id)}
+                    >
+                        <CarCard
+                            styles={styles}
+                            imageUri={item.imageUri}
+                            title={`${item.brand} | ${item.model}`}
+                            subtitle={`${item.year} | ${item.power} hp | ${item.color}`}
+                            compact={false}
+                        />
+                    </TouchableOpacity>
+                ))}
+                <Footer styles={styles} />
+            </ScrollView>
+        </SafeAreaView>
+    );
 };
 
 export default CollectionScreen;

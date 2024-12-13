@@ -45,7 +45,7 @@ const PopularCars = ({styles}) => {
                             key={car.id}
                             styles={styles}
                             imageUri={car.imageUri}
-                            title={`${car.brand} | ${car.model}`}
+                            title={`${car.brand} ${car.model}`}
                             subtitle={`${car.year} | ${car.power} hp | ${car.color}`}
                             compact={true}
                         />

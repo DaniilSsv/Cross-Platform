@@ -90,39 +90,41 @@ const getStyles = (isDarkTheme) => {
         },
 
         // Car Cards
-        carCardContainer: {
-            backgroundColor: colors.cardBackground,
-            borderRadius: 10,
-            overflow: 'hidden',
+        carCardCollection: {
+            marginHorizontal: 16,
             marginBottom: 20,
-            shadowColor: colors.shadow,
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.2,
-            shadowRadius: 4,
-            elevation: 3,
+            backgroundColor: colors.cardBackground,
+            borderRadius: 15,
+            flexDirection: 'column',
+            overflow: 'hidden',
         },
         cardImage: {
             width: '100%',
-            height: 200,
-            borderTopLeftRadius: 10,
-            borderTopRightRadius: 10,
+            height: 220,
+            resizeMode: 'cover',
+            borderTopLeftRadius: 15,
+            borderTopRightRadius: 15,
         },
         cardTextContainer: {
-            padding: 15,
+            padding: 18,
+            backgroundColor: isDarkTheme ? '#3E3E3E' : '#F1F1F1',
+            borderBottomLeftRadius: 12,
+            borderBottomRightRadius: 12,
             alignItems: 'center',
             justifyContent: 'center',
-            width: '100%',
         },
         carDetails: {
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: 'bold',
             color: colors.textPrimary,
             textAlign: 'center',
+            marginBottom: 5,
         },
         carSubDetails: {
             fontSize: 14,
             color: colors.textSecondary,
             textAlign: 'center',
+            fontStyle: 'italic',
         },
 
         // Compact Cards
@@ -140,7 +142,7 @@ const getStyles = (isDarkTheme) => {
         },
         compactImage: {
             width: '100%',
-            height: 250,
+            height: 300,
             resizeMode: 'cover',
             borderTopLeftRadius: 10,
             borderTopRightRadius: 10,
@@ -155,11 +157,12 @@ const getStyles = (isDarkTheme) => {
             fontSize: 14,
             color: colors.textSecondary,
             textAlign: 'center',
+            fontStyle: 'italic',
         },
 
         // Collection Screen
         collectionSection: {
-            padding: 10,
+            paddingHorizontal: 10,
             backgroundColor: colors.background,
         },
         collectionHeader: {
@@ -167,31 +170,22 @@ const getStyles = (isDarkTheme) => {
             paddingHorizontal: 10,
         },
         collectionTitle: {
-            fontSize: 22,
+            fontSize: 26,
             fontWeight: 'bold',
             color: colors.textPrimary,
             marginBottom: 10,
-        },
-        carCardCollection: {
-            marginVertical: 10,
-            borderRadius: 10,
-            overflow: 'hidden',
-            backgroundColor: colors.cardBackground,
-            shadowColor: colors.shadow,
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.2,
-            shadowRadius: 4,
+            letterSpacing: 1,
         },
 
         // Search Bar
         searchContainer: {
+            width: '100%',
+            backgroundColor: colors.cardBackground,
+            borderRadius: 10,
+            padding: 10,
             flexDirection: 'row',
             alignItems: 'center',
-            backgroundColor: isDarkTheme ? '#555' : '#E3E3E3',
-            borderRadius: 8,
-            paddingHorizontal: 10,
-            paddingVertical: 8,
-            marginVertical: 10,
+            marginBottom: 20,
         },
         searchInput: {
             flex: 1,
