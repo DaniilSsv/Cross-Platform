@@ -39,11 +39,13 @@ const getStyles = (isDarkTheme) => {
         popularTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
         popularCars: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
         
-        carCard: { width: '48%', backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', marginVertical: 10, borderRadius: 10, overflow: 'hidden'},
-        carImage: { width: '100%', height: 300, resizeMode: 'contain', borderRadius: 10},
-        carDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131', alignSelf: 'center' },
-        carSubDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131', alignSelf: 'center' },
-
+        carCard: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', borderRadius: 10, marginVertical: 10, padding: 15, alignItems: 'center', shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 5, width: '100%', overflow: 'hidden' },
+        carImage: { width: '100%', height: 300, borderRadius: 8, marginBottom: 10, resizeMode: 'cover'},
+        carDetails: { fontSize: 16, fontWeight: 'bold', color: isDarkTheme ? '#EDD6C8' : '#313131'},
+        carSubDetails: { fontSize: 14, color: isDarkTheme ? '#E3E3E3' : '#757575'},
+        collectionHeader: { paddingHorizontal: 20, marginBottom: 10},
+        collectionTitle: { fontSize: 24, fontWeight: 'bold', marginVertical: 10, color: isDarkTheme ? '#C67C4E' : '#313131'},
+        
         seeAllButton: { alignItems: 'center', marginTop: 10 },
         seeAllText: { color: '#C67C4E' },
 
@@ -74,19 +76,11 @@ const getStyles = (isDarkTheme) => {
 
         // Collection Screen 
         collectionSection: { padding: 16, backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED' },
-        collectionTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
+        //collectionTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
         collectionCars: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between'},
         collectionList: { marginHorizontal: 16, padding: 16, borderRadius: 8 },
 
-        searchContainer: {
-            flexDirection: 'row',
-            alignItems: 'center',
-            backgroundColor: isDarkTheme ? '#555' : '#E3E3E3',
-            borderRadius: 8,
-            paddingHorizontal: 10,
-            paddingVertical: 8,
-            marginVertical: 10,
-        },
+        searchContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: isDarkTheme ? '#555' : '#E3E3E3', borderRadius: 8, paddingHorizontal: 10, paddingVertical: 8, marginVertical: 10, },
         searchInput: { flex: 1, color: isDarkTheme ? '#E3E3E3' : '#313131', fontSize: 16, marginRight: 10 },
         searchBarInput: { color: isDarkTheme ? '#E3E3E3' : '#313131'},
         searchIcon: { marginRight: 5, fontSize: 20, color: isDarkTheme ? '#EDD6C8': '#313131'},

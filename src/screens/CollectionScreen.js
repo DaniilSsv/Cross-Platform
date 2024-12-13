@@ -58,39 +58,39 @@ const CollectionScreen = () => {
 
     return (
         <SafeAreaView style={styles.safeArea}>
-        <View style={styles.container}>
-            <View style={styles.collectionList}>
-                <Text style={styles.collectionTitle}>OUR VEHICLES</Text>
-                <SearchBar 
-                    placeholder="Search for cars..."
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                    styles={styles}
-                />
-            </View>
-            <FlatList
-                    data={filteredCars}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity
-                            style={styles.carCardCollection}
-                            activeOpacity={0.8}
-                            onPress={() => console.log('Navigating with carId:', item.id)}
-                        >
-                            <CarCard
-                                styles={styles}
-                                imageUri={item.imageUri}
-                                title={`${item.brand} | ${item.model}`}
-                                subtitle={`${item.year} | ${item.power} hp | ${item.color}`}
-                            />
-                        </TouchableOpacity>
-                    )}
-                    contentContainerStyle={styles.collectionSection}
-                    ListFooterComponent={<Footer styles={styles} />}
-                />
-        </View>
-        </SafeAreaView>
-    );
+      <FlatList
+        data={filteredCars}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={styles.carCardCollection}
+            activeOpacity={0.8}
+            onPress={() => console.log('Navigating with carId:', item.id)}
+          >
+            <CarCard
+              styles={styles}
+              imageUri={item.imageUri}
+              title={`${item.brand} | ${item.model}`}
+              subtitle={`${item.year} | ${item.power} hp | ${item.color}`}
+            />
+          </TouchableOpacity>
+        )}
+        contentContainerStyle={styles.collectionSection}
+        ListHeaderComponent={() => (
+          <View style={styles.collectionHeader}>
+            <Text style={styles.collectionTitle}>OUR VEHICLES</Text>
+            <SearchBar
+              placeholder="Search for cars..."
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              styles={styles}
+            />
+          </View>
+        )}
+        ListFooterComponent={<Footer styles={styles} />}
+      />
+    </SafeAreaView>
+  );
 };
 
 export default CollectionScreen;

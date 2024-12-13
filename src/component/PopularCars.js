@@ -1,7 +1,6 @@
 import React, { useEffect, useState }from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, TouchableOpacity, Text, ActivityIndicator, Alert } from 'react-native';
-import { ImageView } from '../component/Image'
 
 import CarCard from './CarCard';
 
