@@ -200,24 +200,89 @@ const getStyles = (isDarkTheme) => {
         },
 
         // Detail Screen
+        loadingContainer: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+        },
         detailSection: {
+            marginBottom: 20,
+            backgroundColor: colors.background,
+            borderRadius: 8,
             padding: 16,
-            backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8',
+        },
+        carImage: {
+            width: '100%',
+            height: 200,
+            borderRadius: 8,
         },
         carTitle: {
             fontSize: 24,
             fontWeight: 'bold',
-            color: colors.textPrimary,
-            marginTop: 10,
+            marginVertical: 8,
         },
         carSpecs: {
-            fontSize: 16,
-            color: colors.textPrimary,
-            marginTop: 5,
+            fontSize: 14,
+            color: colors.textSecondary,
         },
         carDescription: {
+            fontSize: 16,
+            marginTop: 8,
             color: colors.textSecondary,
-            marginTop: 10,
+        },
+        rentalSection: {
+            backgroundColor: colors.cardBackground,
+            borderRadius: 8,
+            padding: 16,
+            marginTop: 20,
+        },
+        rentalRow: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginVertical: 8,
+        },
+        label: {
+            fontSize: 16,
+            fontWeight: '500',
+        },
+        price: {
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: colors.accent,
+        },
+        dateInput: {
+            borderWidth: 1,
+            borderColor: '#ddd',
+            borderRadius: 8,
+            padding: 10,
+            marginVertical: 8,
+            fontSize: 16,
+        },
+        location: {
+            fontSize: 16,
+            color: colors.textSecondary,
+        },
+        deposit: {
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: colors.textSecondary,
+        },
+        confirmButton: {
+            backgroundColor: colors.background,
+            padding: 12,
+            borderRadius: 8,
+            alignItems: 'center',
+            marginTop: 16,
+        },
+        confirmText: {
+            fontSize: 18,
+            fontWeight: 'bold',
+            color: colors.textSecondary,
+        },
+        error: {
+            fontSize: 18,
+            color: 'red',
+            textAlign: 'center',
         },
 
         // Settings Screen

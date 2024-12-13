@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator, Alert} from 'react-native';
+import { View, ScrollView ,ActivityIndicator, Alert} from 'react-native';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
@@ -10,7 +10,6 @@ import CarDetailSection from '../component/CarDetailSection';
 import DealerInfoSection from '../component/DealerInfoSection';
 import RentalInfoSection from '../component/RentalInfoSection';
 import Footer from '../component/Footer';
-import { ScrollView } from 'react-native-web';
 
 // Detail Screen
 const DetailScreen = ({route}) => {
@@ -72,7 +71,7 @@ const DetailScreen = ({route}) => {
         );
     }
 
-    if (!carId) {
+    if (!carDetails) {
         return (
             <View style={styles.container}>
                 <Text style={styles.error}>No car data available.</Text>
