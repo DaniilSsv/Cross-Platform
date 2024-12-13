@@ -68,6 +68,7 @@ const CollectionScreen = () => {
                         styles={styles}
                     />
                 </View>
+                <View>
                 {filteredCars.map((item) => (
                     <TouchableOpacity
                         key={item.id.toString()}
@@ -84,6 +85,7 @@ const CollectionScreen = () => {
                         />
                     </TouchableOpacity>
                 ))}
+                </View>
                 <Footer styles={styles} />
             </ScrollView>
         </SafeAreaView>

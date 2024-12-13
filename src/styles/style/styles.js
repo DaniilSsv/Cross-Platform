@@ -99,9 +99,9 @@ const getStyles = (isDarkTheme) => {
             overflow: 'hidden',
         },
         cardImage: {
-            width: '100%',
+            paddingHorizontal: 'auto',
             height: 220,
-            resizeMode: 'cover',
+            resizeMode: 'repeat',
             borderTopLeftRadius: 15,
             borderTopRightRadius: 15,
         },
