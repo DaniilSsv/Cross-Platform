@@ -1,6 +1,6 @@
 import React, { useEffect, useState }from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, TouchableOpacity, FlatList, Text, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
 
 import CarCard from './CarCard';
 
@@ -38,23 +38,20 @@ const PopularCars = ({styles}) => {
     return (
         <View>
             <Text style={styles.popularTitle}>MOST POPULAR</Text>
-            <FlatList
-                data={cars}
-                numColumns={2} // Set number of columns to 2
-                keyExtractor={(item) => item.id.toString()}
-                contentContainerStyle={styles.popularGrid}
-                renderItem={({ item }) => (
-                    <View style={styles.popularCardWrapper}>
+            <View style={styles.popularCars}>
+                {cars.map((car) => (
+                    <TouchableOpacity key={car.id} style={styles.carCard} activeOpacity={0.8} onPress={() => navigation.navigate('CarDetails', { car })}>
                         <CarCard
+                            key={car.id}
                             styles={styles}
-                            imageUri={item.imageUri}
-                            title={`${item.brand} | ${item.model}`}
-                            subtitle={`${item.year} | ${item.power} hp | ${item.color}`}
-                            compact={true} // Pass compact prop
+                            imageUri={car.imageUri}
+                            title={`${car.brand} | ${car.model}`}
+                            subtitle={`${car.year} | ${car.power} hp | ${car.color}`}
+                            compact={true}
                         />
-                    </View>
-                )}
-            />
+                    </TouchableOpacity>
+                ))}
+            </View>
         </View>
     );
 };

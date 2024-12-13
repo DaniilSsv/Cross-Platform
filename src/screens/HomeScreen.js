@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, SafeAreaView, StatusBar } from 'react-native';
+import {ScrollView, SafeAreaView, StatusBar } from 'react-native';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
@@ -18,12 +18,10 @@ const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.safeArea}>
             <StatusBar/>
-            <ScrollView style={styles.container}>
-                <View>
-                    <Banner styles={styles}/>
-                    <PopularCars styles={styles}/>
-                    <Footer styles={styles} />
-                </View>
+            <ScrollView style={styles.container} showsVerticalScrollIndicator={false} >
+                <Banner styles={styles}/>
+                <PopularCars styles={styles}/>
+                <Footer styles={styles} />
             </ScrollView>
         </SafeAreaView>
     );

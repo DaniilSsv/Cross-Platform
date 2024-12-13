@@ -2,8 +2,6 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { ImagePathMap } from '../assets/ImagePathMap';
 
-// <ImageView styles={styles} imageUri={imageUri}/>
-
 const CarCard = ({ styles, imageUri, title, subtitle, compact = false }) => {
     return (
         <View style={compact ? styles.compactCardContainer : styles.carCardContainer}>
