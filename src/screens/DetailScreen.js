@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, ActivityIndicator, Alert} from 'react-native';
+
+// Theme
 import { useTheme } from '../styles/theme/ContextAPI';
 import getStyles from '../styles/style/styles';
 

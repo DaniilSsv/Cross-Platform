@@ -1,6 +1,7 @@
 import React, { useEffect, useState }from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, TouchableOpacity, Text, ActivityIndicator, Alert } from 'react-native';
+import { ImageView } from '../component/Image'
 
 import CarCard from './CarCard';
 
@@ -36,7 +37,7 @@ const PopularCars = ({styles}) => {
     }
 
     return (
-        <View style={styles.popularSection}>
+        <View>
             <Text style={styles.popularTitle}>MOST POPULAR</Text>
             <View style={styles.popularCars}>
                 {cars.map((car) => (

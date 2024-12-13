@@ -1,0 +1,21 @@
+export const ImagePathMap = {
+    "1-blck.jpg": require("./1-blck.jpg"),
+    "1-chrion.jpg": require("./1-chrion.jpg"),
+    "1-dbbs.jpg": require("./1-dbbs.jpg"),
+    "1-dbssss.jpg": require("./1-dbssss.jpg"),
+    "1-gtssss-1.jpg": require("./1-gtssss-1.jpg"),
+    "1-xb7.jpg": require("./1-xb7.jpg"),
+    "adaptive-icon.png": require("./adaptive-icon.png"),
+    "CarBanner.jpg": require("./CarBanner.jpg"),
+    "dsc01845-1.jpg": require("./dsc01845-1.jpg"),
+    "dsc03611-2.jpg": require("./dsc03611-2.jpg"),
+    "favicon.png": require("./favicon.png"),
+    "icon.png": require("./icon.png"),
+    "item_Audi-R8-GT-52-V10-_93786.jpg": require("./item_Audi-R8-GT-52-V10-_93786.jpg"),
+    "item_Audi-RS7-Sportback-Quattro-S-Tronic-360-Camera-Spoiler-Drive-select-Night-vision-Sportuitlaat-Sportzetels-verwarming-ventilatie-Lichtmetalen-.jpg": require("./item_Audi-RS7-Sportback-Quattro-S-Tronic-360-Camera-Spoiler-Drive-select-Night-vision-Sportuitlaat-Sportzetels-verwarming-ventilatie-Lichtmetalen-.jpg"),
+    "item_Lamborghini-Aventador-Roadster-LP700-4-Automaat-LED-Navigatie-Airconditioning-Bluetooth-Elektrisch-verwarmde-en-verstelbare-zetels-Multifunct.jpg": require("./item_Lamborghini-Aventador-Roadster-LP700-4-Automaat-LED-Navigatie-Airconditioning-Bluetooth-Elektrisch-verwarmde-en-verstelbare-zetels-Multifunct.jpg"),
+    "item_Lamborghini-Huracan-LP580-2-LED-Navigatie-Airconditioning-Bluetooth-Achteruitrijcamera-Verwarmde-sportzetels-Sportstuur-met-schakelmogelijkhe.jpg": require("./item_Lamborghini-Huracan-LP580-2-LED-Navigatie-Airconditioning-Bluetooth-Achteruitrijcamera-Verwarmde-sportzetels-Sportstuur-met-schakelmogelijkhe.jpg"),
+    "item_Mercedes-Benz-SLS-AMG-Coupe-571PK-Full-Option-BO-Soundsystem-Camera-2010-Europese-wagen-Obsidiaanzwart-Metallic-_17009.jpg": require("./item_Mercedes-Benz-SLS-AMG-Coupe-571PK-Full-Option-BO-Soundsystem-Camera-2010-Europese-wagen-Obsidiaanzwart-Metallic-_17009.jpg"),
+    "Mercedes-AMG-GT-Black-Series-Limited-edition-1-OF-1700-High-performance-LED-360-Camera-Keyless-go-Burmester-surround-sound-system-AMG-performance-.jpg": require("./Mercedes-AMG-GT-Black-Series-Limited-edition-1-OF-1700-High-performance-LED-360-Camera-Keyless-go-Burmester-surround-sound-system-AMG-performance-.jpg"),
+    "splash.png": require("./splash.png")
+};

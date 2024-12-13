@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, ScrollView, SafeAreaView, StatusBar } from 'react-native';
+
+// Theme
 import { useTheme } from '../styles/theme/ContextAPI';
 import getStyles from '../styles/style/styles';
 

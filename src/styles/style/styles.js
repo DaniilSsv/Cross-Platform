@@ -36,14 +36,13 @@ const getStyles = (isDarkTheme) => {
         bannerTitle: { color: 'white', fontSize: 35, fontWeight: 'bold' },
         bannerSubtitle: { color: 'white', fontSize: 20, fontWeight: 'bold', marginTop: 5 },
 
-        popularSection: { padding: 16 },
         popularTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
         popularCars: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
         
-        carCard: { width: '48%', backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', marginVertical: 10, borderRadius: 8, padding: 10 },
-        carImage: { width: '100%', height: 120, borderRadius: 8 },
-        carDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
-        carSubDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131' },
+        carCard: { width: '48%', backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', marginVertical: 10, borderRadius: 10, overflow: 'hidden'},
+        carImage: { width: '100%', height: 300, resizeMode: 'contain', borderRadius: 10},
+        carDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131', alignSelf: 'center' },
+        carSubDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131', alignSelf: 'center' },
 
         seeAllButton: { alignItems: 'center', marginTop: 10 },
         seeAllText: { color: '#C67C4E' },

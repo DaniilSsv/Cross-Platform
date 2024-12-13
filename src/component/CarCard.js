@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import ImageView from './Image';
 
 const CarCard = ({ styles, imageUri, title, subtitle }) => {
     return (
         <View >
-            <Image source={{ uri: imageUri }} style={styles.carImage} />
+            <ImageView styles={styles} imageUri={imageUri}/>
             <Text style={styles.carDetails} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
             <Text style={styles.carSubDetails} numberOfLines={1} ellipsizeMode="tail">{subtitle}</Text>
         </View>
