@@ -22,21 +22,9 @@ const getStyles = (isDarkTheme) => {
         },
 
         // Footer
-        footer: {
-            backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8',
-            padding: 16,
-            alignItems: 'center',
-        },
-        footerText: {
-            color: colors.textPrimary,
-            marginTop: 10,
-            fontSize: 14,
-        },
-        footerCopy: {
-            color: colors.textPrimary,
-            fontSize: 12,
-            marginTop: 10,
-        },
+        footer: { backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', padding: 16, alignItems: 'center' },
+        footerText: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
+        footerCopy: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 12, marginTop: 10 },
 
         // Home Screen
 
@@ -200,90 +188,30 @@ const getStyles = (isDarkTheme) => {
         },
 
         // Detail Screen
-        loadingContainer: {
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100%',
-        },
-        detailSection: {
-            marginBottom: 20,
-            backgroundColor: colors.background,
-            borderRadius: 8,
-            padding: 16,
-        },
-        carImage: {
-            width: '100%',
-            height: 200,
-            borderRadius: 8,
-        },
-        carTitle: {
-            fontSize: 24,
-            fontWeight: 'bold',
-            marginVertical: 8,
-        },
-        carSpecs: {
-            fontSize: 14,
-            color: colors.textSecondary,
-        },
-        carDescription: {
-            fontSize: 16,
-            marginTop: 8,
-            color: colors.textSecondary,
-        },
-        rentalSection: {
-            backgroundColor: colors.cardBackground,
-            borderRadius: 8,
-            padding: 16,
-            marginTop: 20,
-        },
-        rentalRow: {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginVertical: 8,
-        },
-        label: {
-            fontSize: 16,
-            fontWeight: '500',
-        },
-        price: {
-            fontSize: 16,
-            fontWeight: 'bold',
-            color: colors.accent,
-        },
-        dateInput: {
-            borderWidth: 1,
-            borderColor: '#ddd',
-            borderRadius: 8,
-            padding: 10,
-            marginVertical: 8,
-            fontSize: 16,
-        },
-        location: {
-            fontSize: 16,
-            color: colors.textSecondary,
-        },
-        deposit: {
-            fontSize: 16,
-            fontWeight: 'bold',
-            color: colors.textSecondary,
-        },
-        confirmButton: {
-            backgroundColor: colors.background,
-            padding: 12,
-            borderRadius: 8,
-            alignItems: 'center',
-            marginTop: 16,
-        },
-        confirmText: {
-            fontSize: 18,
-            fontWeight: 'bold',
-            color: colors.textSecondary,
-        },
-        error: {
-            fontSize: 18,
-            color: 'red',
-            textAlign: 'center',
-        },
+        detailSection: { padding: 16, backgroundColor: '#EDD6C8' },
+        carImage: { width: '100%', height: 200, borderRadius: 8, marginBottom: 0 },
+        carTitle: { color: '#313131', fontSize: 24, fontWeight: 'bold', marginTop: 10 },
+        carSpecs: { color: '#313131', fontSize: 16, marginTop: 5 },
+        carDescription: { color: '#313131', marginTop: 10 },
+
+        dealerSection: { padding: 16, backgroundColor: '#F9F2ED', marginVertical: 10 },
+        dealerTitle: { color: '#313131', fontSize: 20, fontWeight: 'bold', marginBottom: 5 },
+        dealerName: { color: '#313131', fontSize: 16 },
+        dealerAddress: { color: '#313131', fontSize: 16 },
+        dealerCity: { color: '#313131', fontSize: 16 },
+        dealerContact: { color: '#313131', fontSize: 16 },
+
+        rentalSection: { padding: 16, backgroundColor: '#313131', marginTop: 0 },
+        rentalTitle: { color: '#EDD6C8', fontSize: 20, fontWeight: 'bold' },
+        rentalRow: { flexDirection: 'row', justifyContent: 'space-between', marginVertical: 8 },
+        label: { color: '#E3E3E3', fontSize: 16 },
+        price: { color: '#C67C4E', fontSize: 16, fontWeight: 'bold' },
+        dateInput: { backgroundColor: '#E3E3E3', color: '#313131', borderRadius: 8, padding: 8, width: '48%' },
+        location: { color: '#C67C4E' },
+        deposit: { color: '#C67C4E', fontSize: 16, fontWeight: 'bold' },
+
+        confirmButton: { backgroundColor: '#C67C4E', borderRadius: 8, padding: 12, marginTop: 10 },
+        confirmText: { color: '#FFF', textAlign: 'center', fontWeight: 'bold' },
 
         // Settings Screen
         settingsSection: {

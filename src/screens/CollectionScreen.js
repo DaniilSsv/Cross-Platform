@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, ActivityIndicator, TouchableOpacity, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
-import getStyles from '../styles/style/styles';
 
 // Components
 import SearchBar from '../component/SearchBar';
@@ -91,5 +90,30 @@ const CollectionScreen = () => {
         </SafeAreaView>
     );
 };
+
+const getStyles = (isDarkTheme) =>
+    StyleSheet.create({
+        container: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', flex: 1 },
+        collectionSection: { padding: 16, backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED' },
+        collectionTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
+        collectionCars: { flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between' },
+        collectionList: { marginHorizontal: 16, padding: 16, borderRadius: 8},
+            
+        carCard: { width: '100%', backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', marginVertical: 10, borderRadius: 8, padding: 10 },
+        carImage: { width: '100%', height: 120, borderRadius: 8 },
+        carDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
+        carSubDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131' },
+
+        searchContainer: {
+        flexDirection: 'row', alignItems: 'center', backgroundColor: isDarkTheme ? '#555' : '#E3E3E3',
+        borderRadius: 8, paddingHorizontal: 4, paddingVertical: 4, marginVertical: 10},
+        searchInput: { flex: 1, color: isDarkTheme ? '#E3E3E3' : '#313131', fontSize: 16, paddingVertical: 4},
+        searchBarInput: { color: isDarkTheme ? '#E3E3E3' : '#313131'},
+        searchIcon: { marginRight: 5, fontSize: 20, color: isDarkTheme ? '#EDD6C8' : '#313131'},
+        
+        footer: { backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', padding: 16, alignItems: 'center' },
+        footerText: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
+        footerCopy: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 12, marginTop: 10 }
+});
 
 export default CollectionScreen;
