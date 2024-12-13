@@ -1,13 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import ImageView from './Image';
+import { View, Text, Image } from 'react-native';
+import { ImagePathMap } from '../assets/ImagePathMap';
 
-const CarCard = ({ styles, imageUri, title, subtitle }) => {
+// <ImageView styles={styles} imageUri={imageUri}/>
+
+const CarCard = ({ styles, imageUri, title, subtitle, compact = false }) => {
     return (
-        <View >
-            <ImageView styles={styles} imageUri={imageUri}/>
-            <Text style={styles.carDetails} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
-            <Text style={styles.carSubDetails} numberOfLines={1} ellipsizeMode="tail">{subtitle}</Text>
+        <View style={compact ? styles.compactCardContainer : styles.carCardContainer}>
+            <Image style={compact ? styles.compactImage : styles.carImage} source={ImagePathMap[imageUri]}/>
+            <View style={styles.carTextContainer}>
+            <Text style={compact ? styles.compactCarDetails : styles.carDetails} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
+            <Text style={compact ? styles.compactCarSubDetails : styles.carSubDetails} numberOfLines={1} ellipsizeMode="tail">{subtitle}</Text>
+            </View>
         </View>
     );
 };

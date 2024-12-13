@@ -36,16 +36,86 @@ const getStyles = (isDarkTheme) => {
         bannerTitle: { color: 'white', fontSize: 35, fontWeight: 'bold' },
         bannerSubtitle: { color: 'white', fontSize: 20, fontWeight: 'bold', marginTop: 5 },
 
-        popularTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
+        //popularTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
         popularCars: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
         
-        carCard: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', borderRadius: 10, marginVertical: 10, padding: 15, alignItems: 'center', shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 5, width: '100%', overflow: 'hidden' },
+        /*carCard: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', borderRadius: 10, marginVertical: 10, padding: 15, alignItems: 'center', shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 5, width: '100%', overflow: 'hidden' },
         carImage: { width: '100%', height: 300, borderRadius: 8, marginBottom: 10, resizeMode: 'cover'},
         carDetails: { fontSize: 16, fontWeight: 'bold', color: isDarkTheme ? '#EDD6C8' : '#313131'},
         carSubDetails: { fontSize: 14, color: isDarkTheme ? '#E3E3E3' : '#757575'},
         collectionHeader: { paddingHorizontal: 20, marginBottom: 10},
         collectionTitle: { fontSize: 24, fontWeight: 'bold', marginVertical: 10, color: isDarkTheme ? '#C67C4E' : '#313131'},
-        
+        */
+
+        popularSection: {
+            marginVertical: 20,
+        },
+        popularTitle: {
+            fontSize: 22,
+            fontWeight: 'bold',
+            color: isDarkTheme ? '#C67C4E' : '#313131',
+            marginHorizontal: 20,
+            marginBottom: 10,
+        },
+        carCardContainer: {
+            backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED',
+            borderRadius: 10,
+            overflow: 'hidden',
+            marginBottom: 20,
+        },
+        compactCardContainer: {
+            backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED',
+            borderRadius: 10,
+            overflow: 'hidden',
+            width: '100%', // Fixed width for compact cards
+            alignItems: 'center' // Space between horizontal cards
+        },
+        popularCardWrapper: {
+            flex: 1, // Distribute cards evenly
+            margin: 5, // Add spacing between cards
+        },
+        carImage: {
+            width: '100%',
+            height: 400, // Larger image for standard layout
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+        },
+        compactImage: {
+            width: '100%',
+            height: 200, // Smaller image for compact layout
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+        },
+        cardTextContainer: {
+            padding: 10,
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+        },
+        carDetails: {
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: isDarkTheme ? '#EDD6C8' : '#313131',
+        },
+        compactCarDetails: {
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: isDarkTheme ? '#EDD6C8' : '#313131',
+            textAlign: 'center',
+        },
+        carSubDetails: {
+            fontSize: 14,
+            color: isDarkTheme ? '#E3E3E3' : '#757575',
+        },
+        compactCarSubDetails: {
+            fontSize: 12,
+            color: isDarkTheme ? '#E3E3E3' : '#757575',
+            textAlign: 'center',
+        },
+        popularGrid: {
+            paddingHorizontal: 10
+        },
+
         seeAllButton: { alignItems: 'center', marginTop: 10 },
         seeAllText: { color: '#C67C4E' },
 
@@ -76,7 +146,7 @@ const getStyles = (isDarkTheme) => {
 
         // Collection Screen 
         collectionSection: { padding: 16, backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED' },
-        //collectionTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
+        collectionTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
         collectionCars: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between'},
         collectionList: { marginHorizontal: 16, padding: 16, borderRadius: 8 },
 
