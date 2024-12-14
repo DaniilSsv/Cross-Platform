@@ -29,7 +29,7 @@ const PopularCars = ({styles}) => {
     
     if (isLoading) {
         return (
-            <View style={styles.popularSection}>
+            <View>
                 <ActivityIndicator size="large" color="#C67C4E" />
             </View>
         );
