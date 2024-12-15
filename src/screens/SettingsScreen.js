@@ -59,12 +59,12 @@ const getStyles = (isDarkTheme) =>
         settingsSection: { padding: 16, marginVertical: 10, backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', borderRadius: 8 },
         settingsTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
         settingItem: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 },
-        settingLabel: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 16 },
+        settingLabel: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 18 },
         picker: { width: 150, color: isDarkTheme ? '#EDD6C8' : '#313131', backgroundColor: isDarkTheme ? '#313131' : '#EDD6C8'},
 
         footer: { backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', padding: 16, alignItems: 'center' },
         footerText: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
-        footerCopy: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 12, marginTop: 10 },
+        footerCopy: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 16, marginTop: 10 },
     });
 
 export default SettingsScreen;
