@@ -141,6 +141,8 @@ const getStyles = (isDarkTheme) => {
         rentalRow: { flexDirection: 'row', justifyContent: 'space-between', marginVertical: 8 },
         label: { color: secondaryTextColor, fontSize: 16 },
         price: { color: highlightColor, fontSize: 16, fontWeight: 'bold' },
+        dateInputTouchable: {backgroundColor: '#F9F2ED',borderRadius: 8,borderWidth: 1,borderColor: '#C67C4E',paddingVertical: 10,paddingHorizontal: 12,justifyContent: 'center',},
+        dateInputText: {color: '#313131',fontSize: 16,},
         dateInput: {backgroundColor: secondaryTextColor,color: '#313131',borderRadius: 8,padding: 8,width: '48%',},
         location: { color: highlightColor },
         deposit: { color: highlightColor, fontSize: 16, fontWeight: 'bold' },

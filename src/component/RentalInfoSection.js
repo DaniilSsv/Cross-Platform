@@ -47,8 +47,8 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
             {/* Date Selection */}
             <View style={styles.rentalRow}>
                 <Text style={styles.label}>Start Date:</Text>
-                <TouchableOpacity onPress={() => setStartPickerVisible(true)}>
-                    <Text style={styles.dateInput}>
+                <TouchableOpacity style={styles.dateInputTouchable} onPress={() => setStartPickerVisible(true)}>
+                    <Text style={styles.dateInputText}>
                         {startDate ? startDate.toDateString() : 'Select Start Date'}
                     </Text>
                 </TouchableOpacity>
@@ -65,8 +65,8 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
 
             <View style={styles.rentalRow}>
                 <Text style={styles.label}>End Date:</Text>
-                <TouchableOpacity onPress={() => setEndPickerVisible(true)}>
-                    <Text style={styles.dateInput}>
+                <TouchableOpacity style={styles.dateInputTouchable} onPress={() => setEndPickerVisible(true)}>
+                    <Text style={styles.dateInputText}>
                         {endDate ? endDate.toDateString() : 'Select End Date'}
                     </Text>
                 </TouchableOpacity>
