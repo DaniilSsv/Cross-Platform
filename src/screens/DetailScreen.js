@@ -145,7 +145,7 @@ const getStyles = (themeColors) =>
         confirmButton: { backgroundColor: themeColors.highlightColor, borderRadius: 8, padding: 12, marginTop: 10 },
         confirmText: { color: '#FFF', textAlign: 'center', fontWeight: 'bold' },
 
-        footer: {backgroundColor: themeColors.tertiaryBackgroundColor,padding: 16,alignItems: 'center',borderTopWidth: 1,borderTopColor: themeColors.primaryBackgroundColor,},
+        footer: {backgroundColor: themeColors.tertiaryBackgroundColor,padding: 16,alignItems: 'center'},
         footerText: { color: themeColors.textColor, marginTop: 10 },
         footerCopy: { color: themeColors.textColor, fontSize: 16, marginTop: 10 },
 

@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
+import colors from '../styles/theme/colors';
 
 // Components
 import SearchBar from '../component/SearchBar';
@@ -12,7 +13,8 @@ import CarCard from '../component/CarCard';
 
 const CollectionScreen = () => {
     const { isDarkTheme } = useTheme();
-    const styles = getStyles(isDarkTheme);
+    const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme; // Choose theme colors
+    const styles = getStyles(themeColors);
 
     const navigation = useNavigation();
     const [cars, setCars] = useState([]);
@@ -52,7 +54,7 @@ const CollectionScreen = () => {
     if (isLoading) {
         return (
             <View style={styles.container}>
-                <ActivityIndicator size="large" color={textColor} />
+                <ActivityIndicator size="large" color={themeColors.textColor} />
             </View>
         );
     }
@@ -89,42 +91,35 @@ const CollectionScreen = () => {
     );
 };
 
-const getStyles = (isDarkTheme) => {
-    const primaryBackgroundColor = isDarkTheme ? '#4D2C2C' : '#FFEBE8';
-    const tertiaryBackgroundColor = isDarkTheme ? '#995353' : '#FFC4BA';
-    const textColor = isDarkTheme ? '#FFFFFF' : '#1A1A1A';
-    const secondaryTextColor = isDarkTheme ? '#E5E5E5' : '#4D4D4D';
-
-    return StyleSheet.create({
-        safeArea: {flex: 1,backgroundColor: primaryBackgroundColor},
-        container: { backgroundColor: primaryBackgroundColor, flex: 1 },
-        scrollViewContainer: { alignItems: 'center',},
+const getStyles = (themeColors) => 
+    StyleSheet.create({
+        safeArea: {flex: 1,backgroundColor: themeColors.primaryBackgroundColor},
+        container: { backgroundColor: themeColors.primaryBackgroundColor, flex: 1 },
         
         // Collection Section
-        collectionSection: { padding: 16, backgroundColor: primaryBackgroundColor },
-        collectionTitle: { color: textColor, fontSize: 20, fontWeight: 'bold' },
+        collectionSection: { padding: 16, backgroundColor: themeColors.primaryBackgroundColor },
+        collectionTitle: { color: themeColors.textColor, fontSize: 20, fontWeight: 'bold' },
         collectionCars: { flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between' },
         collectionList: {paddingHorizontal: 15},
         collectionHeader: {padding: 15},
 
         // Car Card
         carCardContainer: {borderRadius: 10,width: '100%',aligncars: 'center',},
-        carCardCollection: { width: '100%', backgroundColor:  tertiaryBackgroundColor, marginVertical: 10, borderRadius: 8, padding: 10 },
+        carCardCollection: { width: '100%', backgroundColor:  themeColors.tertiaryBackgroundColor, marginVertical: 10, borderRadius: 8, padding: 10 },
         carImage: { width: '100%', height: 700, borderRadius: 8, },
-        carDetails: { color: secondaryTextColor, marginTop: 10, textAlign: 'center', marginBottom: 5, fontWeight: 'bold' },
-        carSubDetails: { color: secondaryTextColor, textAlign: 'center',},
+        carDetails: { color: themeColors.secondaryTextColor, marginTop: 10, textAlign: 'center', marginBottom: 5, fontWeight: 'bold' },
+        carSubDetails: { color: themeColors.secondaryTextColor, textAlign: 'center',},
 
         // Search Bar
-        searchContainer: {flexDirection: 'row', aligncars: 'center', backgroundColor: isDarkTheme ? '#555' : '#CCC',
+        searchContainer: {flexDirection: 'row', aligncars: 'center', backgroundColor: '#F9F2ED',
         borderRadius: 8, paddingHorizontal: 4, paddingVertical: 4, marginVertical: 10},
         searchInput: { flex: 1, color: '#313131', fontSize: 16, paddingVertical: 4},
         searchBarInput: { color: '#313131'},
-        searchIcon: { marginRight: 5, fontSize: 20, color: textColor},
+        searchIcon: { marginRight: 5, fontSize: 20, color: themeColors.textColor},
         
-        footer: { backgroundColor: tertiaryBackgroundColor, padding: 16, aligncars: 'center' },
-        footerText: { color: textColor, marginTop: 10 },
-        footerCopy: { color: textColor, fontSize: 16, marginTop: 10 }
+        footer: { backgroundColor: themeColors.tertiaryBackgroundColor, padding: 16, alignItems: 'center' },
+        footerText: { color: themeColors.textColor, marginTop: 10,},
+        footerCopy: { color: themeColors.textColor, fontSize: 16, marginTop: 10,}
     });
-};
 
 export default CollectionScreen;
