@@ -3,6 +3,7 @@ import { ScrollView, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
+import colors from '../styles/theme/colors';
 
 // Components
 import Banner from '../component/Banner';
@@ -12,7 +13,8 @@ import Footer from '../component/Footer';
 // Main Component
 const HomeScreen = () => {
     const { isDarkTheme } = useTheme();
-    const styles = getStyles(isDarkTheme);
+    const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme; // Choose theme colors
+    const styles = getStyles(themeColors);
     
     return (
         <SafeAreaView style={styles.safeArea}>
@@ -26,10 +28,10 @@ const HomeScreen = () => {
     );
 };
 
-const getStyles = (isDarkTheme) =>
+const getStyles = (themeColors) =>
     StyleSheet.create({
-        container: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', flex: 1 },
-        safeArea: {flex: 1, backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED',},
+        container: { backgroundColor: themeColors.primaryBackgroundColor, flex: 1 },
+        safeArea: {flex: 1, backgroundColor: themeColors.primaryBackgroundColor,},
 
         // Banner
         banner: { position: 'relative' },
@@ -40,22 +42,22 @@ const getStyles = (isDarkTheme) =>
         
         // Popular Car Section
         popularGrid: {padding: 20,justifyContent: 'space-between',},
-        popularTitle: {fontSize: 24,fontWeight: 'bold',color: isDarkTheme ? '#EDD6C8' : '#313131',marginTop: 20,marginLeft: 20,},
+        popularTitle: {fontSize: 24,fontWeight: 'bold',color: themeColors.textColor,marginTop: 20,marginLeft: 20,},
         popularCars: {flexDirection: 'row',flexWrap: 'wrap',justifyContent: 'space-between',padding: 15,},
         carCard: {width: '48%',marginBottom: 10,marginLeft: 5},
 
         // Car Cards
-        compactCardContainer: {backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8',borderRadius: 10,width: '100%',alignItems: 'center',},
+        compactCardContainer: {backgroundColor: themeColors.secondaryBackgroundColor,borderRadius: 10,width: '100%',alignItems: 'center',},
         compactImage: {width: '100%',height: 300,resizeMode: 'cover',borderTopLeftRadius: 10,borderTopRightRadius: 10,},
-        compactCarDetails: {fontSize: 18,fontWeight: 'bold',color: isDarkTheme ? '#EDD6C8' : '#313131',textAlign: 'center', marginTop: 10, marginBottom: 5},
-        compactCarSubDetails: {fontSize: 16,color: isDarkTheme ? '#EDD6C8' : '#313131',textAlign: 'center',fontStyle: 'italic', marginBottom: 5},
+        compactCarDetails: {fontSize: 18,fontWeight: 'bold',color: themeColors.textColor,textAlign: 'center', marginTop: 10, marginBottom: 5},
+        compactCarSubDetails: {fontSize: 16,color: themeColors.textColor,textAlign: 'center',fontStyle: 'italic', marginBottom: 5},
 
         seeAllButton: { alignItems: 'center', marginTop: 10 },
         seeAllText: { color: '#C67C4E' },
 
-        footer: { backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', padding: 16, alignItems: 'center' },
-        footerText: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
-        footerCopy: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 16, marginTop: 10 },
+        footer: { backgroundColor: themeColors.tertiaryBackgroundColor, padding: 16, alignItems: 'center' },
+        footerText: { color: themeColors.textColor, marginTop: 10 },
+        footerCopy: { color: themeColors.textColor, fontSize: 16, marginTop: 10 },
     });
 
 export default HomeScreen;
