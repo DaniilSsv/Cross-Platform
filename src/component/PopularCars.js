@@ -30,17 +30,24 @@ const PopularCars = ({styles}) => {
     if (isLoading) {
         return (
             <View>
-                <ActivityIndicator size="large" color="#C67C4E" />
+                <ActivityIndicator size="large" color="#C67C4E" accessibilityLabel="Loading cars..."/>
             </View>
         );
     }
 
     return (
         <View>
-            <Text style={styles.popularTitle}>MOST POPULAR</Text>
+            <Text style={styles.popularTitle} accessible={true} accessibilityLabel="Most popular cars">MOST POPULAR</Text>
             <View style={styles.popularCars}>
                 {cars.map((car) => (
-                    <TouchableOpacity key={car.id} style={styles.carCard} activeOpacity={0.8} onPress={() => navigation.navigate('CarDetails', { car })}>
+                    <TouchableOpacity
+                        key={car.id}
+                        style={styles.carCard}
+                        activeOpacity={0.8}
+                        accessible={true}
+                        accessibilityLabel={`${car.brand} ${car.model}`}
+                        accessibilityHint="Double-tap to see more details"
+                        onPress={() => navigation.navigate('CarDetails', { car })}>
                         <CarCard
                             key={car.id}
                             styles={styles}

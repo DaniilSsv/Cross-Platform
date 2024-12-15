@@ -54,7 +54,7 @@ const CollectionScreen = () => {
     if (isLoading) {
         return (
             <View style={styles.container}>
-                <ActivityIndicator size="large" color={themeColors.textColor} />
+                <ActivityIndicator size="large" color={themeColors.textColor} accessibilityLabel="Loading cars..." />
             </View>
         );
     }
@@ -63,17 +63,28 @@ const CollectionScreen = () => {
         <SafeAreaView style={styles.safeArea}>
             <ScrollView contentContainerStyle={styles.scrollViewContainer}>
                 <View style={styles.collectionHeader}>
-                    <Text style={styles.collectionTitle}>OUR VEHICLES</Text>
+                    <Text style={styles.collectionTitle} accessible={true} accessibilityLabel="Our Vehicles Section">OUR VEHICLES</Text>
                     <SearchBar
                         placeholder="Search for cars..."
                         searchQuery={searchQuery}
                         setSearchQuery={setSearchQuery}
                         styles={styles}
+                        accessible={true}
+                        accessibilityLabel="Search Bar"
+                        accessibilityRole="search"
                     />
                 </View>
                 <View style={styles.collectionList}>
                 {filteredCars.map((car) => (
-                    <TouchableOpacity key={car.id} style={styles.carCardCollection} activeOpacity={0.8} onPress={() => navigation.navigate('CarDetails', { car })}>
+                    <TouchableOpacity
+                        key={car.id}
+                        style={styles.carCardCollection}
+                        activeOpacity={0.8}
+                        onPress={() => navigation.navigate('CarDetails', { car })}
+                        accessible={true}
+                        accessibilityLabel={`View details for ${car.brand} ${car.model}`}
+                        accessibilityRole="button"
+                        >
                         <CarCard
                             key={car.id}
                             styles={styles}

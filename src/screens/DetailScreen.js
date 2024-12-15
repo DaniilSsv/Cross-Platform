@@ -89,7 +89,7 @@ const DetailScreen = ({route}) => {
     if (loading) {
         return (
             <View style={[styles.container, styles.loadingContainer]}>
-                <ActivityIndicator size="large" color="#C67C4E" />
+                <ActivityIndicator size="large" color="#C67C4E" accessibilityLabel="Loading cars..."/>
             </View>
         );
     }
@@ -97,7 +97,7 @@ const DetailScreen = ({route}) => {
     if (!carDetails) {
         return (
             <View style={styles.container}>
-                <Text style={styles.error}>No car data available.</Text>
+                <Text style={styles.error} accessibilityLabel="No car data available">No car data available.</Text>
             </View>
         );
     }

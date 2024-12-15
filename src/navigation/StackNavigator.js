@@ -22,7 +22,7 @@ const StackNavigator = () => {
         component={DetailScreen}
         options={{
           headerStyle: { backgroundColor: '#313131' },
-          headerTintColor: '#EDD6C8',
+          headerTintColor: '#C67C4E',
           title: 'Car Details',
         }}
       />

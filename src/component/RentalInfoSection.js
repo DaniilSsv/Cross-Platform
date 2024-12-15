@@ -27,7 +27,7 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
             startDate: formattedStartDate, // Format dates properly
             endDate: formattedEndDate,
             deposit: 500, // Replace with dynamic deposit if needed
-            pickupLocation: 'Kortrijk, Belgium',
+            pickupLocation: `${car.dealerAddress} ${car.dealerCity} ${car.dealerPostcode}`,
             email: email,
         };
 
@@ -36,18 +36,18 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
 
     return (
         <View style={styles.rentalSection}>
-            <Text style={styles.rentalTitle}>Rent this Car</Text>
+            <Text style={styles.rentalTitle} accessibilityLabel="Rent this Car">Rent this Car</Text>
 
             {/* Rental Price */}
             <View style={styles.rentalRow}>
-                <Text style={styles.label}>Rental Price:</Text>
-                <Text style={styles.price}>€100/day</Text>
+                <Text style={styles.label} accessibilityLabel="Label: Rental Price">Rental Price:</Text>
+                <Text style={styles.price} accessibilityLabel="Rental Price: €500 per day">€500/day</Text>
             </View>
 
             {/* Date Selection */}
             <View style={styles.rentalRow}>
-                <Text style={styles.label}>Start Date:</Text>
-                <TouchableOpacity style={styles.dateInputTouchable} onPress={() => setStartPickerVisible(true)}>
+                <Text style={styles.label} accessibilityLabel="Label: Start Date">Start Date:</Text>
+                <TouchableOpacity style={styles.dateInputTouchable} onPress={() => setStartPickerVisible(true)} accessibilityRole="button" accessibilityLabel="Select Start Date">
                     <Text style={styles.dateInputText}>
                         {startDate ? startDate.toDateString() : 'Select Start Date'}
                     </Text>
@@ -60,12 +60,13 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
                         setStartPickerVisible(false);
                     }}
                     onCancel={() => setStartPickerVisible(false)}
+                    accessibilityLabel="Start date picker"
                 />
             </View>
 
             <View style={styles.rentalRow}>
-                <Text style={styles.label}>End Date:</Text>
-                <TouchableOpacity style={styles.dateInputTouchable} onPress={() => setEndPickerVisible(true)}>
+                <Text style={styles.label} accessibilityLabel="Label: End Date">End Date:</Text>
+                <TouchableOpacity style={styles.dateInputTouchable} onPress={() => setEndPickerVisible(true)} accessibilityRole="button" accessibilityLabel="Select End Date">
                     <Text style={styles.dateInputText}>
                         {endDate ? endDate.toDateString() : 'Select End Date'}
                     </Text>
@@ -78,19 +79,20 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
                         setEndPickerVisible(false);
                     }}
                     onCancel={() => setEndPickerVisible(false)}
+                    accessibilityLabel="End date picker"
                 />
             </View>
 
             {/* Location */}
             <View style={styles.rentalRow}>
-                <Text style={styles.label}>Pickup Location:</Text>
-                <Text style={styles.location}>Kortrijk, Belgium</Text>
+                <Text style={styles.label} accessibilityLabel="Label: Pickup Location">Pickup Location:</Text>
+                <Text style={styles.location} accessibilityLabel={`Location: ${car.dealerAddress} ${car.dealerCity}`}>{car.dealerAddress} {car.dealerCity}</Text>
             </View>
 
             {/* Deposit */}
             <View style={styles.rentalRow}>
-                <Text style={styles.label}>Deposit:</Text>
-                <Text style={styles.deposit}>€500</Text>
+                <Text style={styles.label} accessibilityLabel="Label: Deposit">Deposit:</Text>
+                <Text style={styles.deposit} accessibilityLabel="Deposit: €100">€1000</Text>
             </View>
 
             {/* User Email */}
@@ -102,11 +104,13 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
                     value={email}
                     onChangeText={setEmail}
                     keyboardType='email-address'
+                    accessibilityLabel="Email input"
+                    accessibilityHint="Enter your email address for rental confirmation"
                 />
             </View>
 
             {/* Confirm Button */}
-            <TouchableOpacity style={styles.confirmButton} onPress={handleConfirm}>
+            <TouchableOpacity style={styles.confirmButton} onPress={handleConfirm} accessibilityRole="button" accessibilityLabel="Confirm Rental">
                 <Text style={styles.confirmText}>Confirm Rental</Text>
             </TouchableOpacity>
         </View>
