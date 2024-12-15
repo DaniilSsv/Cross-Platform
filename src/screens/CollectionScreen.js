@@ -115,7 +115,7 @@ const getStyles = (themeColors) =>
         borderRadius: 8, paddingHorizontal: 4, paddingVertical: 4, marginVertical: 10},
         searchInput: { flex: 1, color: '#313131', fontSize: 16, paddingVertical: 4},
         searchBarInput: { color: '#313131'},
-        searchIcon: { marginRight: 5, fontSize: 20, color: themeColors.textColor},
+        searchIcon: { marginRight: 5, fontSize: 20, color: '#1A1A1A'},
         
         footer: { backgroundColor: themeColors.tertiaryBackgroundColor, padding: 16, alignItems: 'center' },
         footerText: { color: themeColors.textColor, marginTop: 10,},

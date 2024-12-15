@@ -4,13 +4,15 @@ import { Picker } from '@react-native-picker/picker';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
+import colors from '../styles/theme/colors';
 
 //components
 import Footer from '../component/Footer';
 
 const SettingsScreen = () => {
     const { isDarkTheme, toggleTheme } = useTheme();
-    const styles = getStyles(isDarkTheme);
+    const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme; // Choose theme colors
+    const styles = getStyles(themeColors);
 
     const [selectedCurrency, setSelectedCurrency] = useState('EUR');
 
@@ -51,20 +53,20 @@ const SettingsScreen = () => {
     );
 };
 
-const getStyles = (isDarkTheme) =>
+const getStyles = (themeColors) =>
     StyleSheet.create({
-        container: { flex: 1, backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED' },
+        container: { flex: 1, backgroundColor: themeColors.primaryBackgroundColor },
         scrollContainer: { flexGrow: 1 },
 
-        settingsSection: { padding: 16, marginVertical: 10, backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', borderRadius: 8 },
-        settingsTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
+        settingsSection: { padding: 16, marginVertical: 10, backgroundColor: themeColors.secondaryBackgroundColor, borderRadius: 8 },
+        settingsTitle: { color: themeColors.textColor, fontSize: 20, fontWeight: 'bold' },
         settingItem: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 },
-        settingLabel: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 18 },
-        picker: { width: 150, color: isDarkTheme ? '#EDD6C8' : '#313131', backgroundColor: isDarkTheme ? '#313131' : '#EDD6C8'},
+        settingLabel: { color: themeColors.textColor, fontSize: 18 },
+        picker: { width: 150, color: themeColors.textColor, backgroundColor: themeColors.primaryBackgroundColor},
 
-        footer: { backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', padding: 16, alignItems: 'center' },
-        footerText: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
-        footerCopy: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 16, marginTop: 10 },
+        footer: { backgroundColor: themeColors.tertiaryBackgroundColor, padding: 16, alignItems: 'center' },
+        footerText: { color: themeColors.textColor, marginTop: 10 },
+        footerCopy: { color: themeColors.textColor, fontSize: 16, marginTop: 10 },
     });
 
 export default SettingsScreen;
