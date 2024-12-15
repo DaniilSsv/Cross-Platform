@@ -3,6 +3,7 @@ import { View, ScrollView ,ActivityIndicator, Alert, StyleSheet} from 'react-nat
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
+import colors from '../styles/theme/colors';
 
 // Components
 import CarDetailSection from '../component/CarDetailSection';
@@ -16,7 +17,8 @@ const DetailScreen = ({route}) => {
     carId = car.id;
 
     const { isDarkTheme } = useTheme();
-    const styles = getStyles(isDarkTheme);
+    const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme; // Choose theme colors
+    const styles = getStyles(themeColors);
 
     // State Management
     const [carDetails, setCarDetails] = useState(null);
@@ -112,51 +114,43 @@ const DetailScreen = ({route}) => {
     );
 };
 
-const getStyles = (isDarkTheme) => {
-    const primaryBackgroundColor = isDarkTheme ? '#313131' : '#F9F2ED';
-    const secondaryBackgroundColor = isDarkTheme ? '#3E3E3E' : '#D9C2B4';
-    const tertiaryBackgroundColor = isDarkTheme ? '#4A4A4A' : '#EDD6C8'; 
-    const textColor = isDarkTheme ? '#EDD6C8' : '#313131';
-    const secondaryTextColor = isDarkTheme ? '#E3E3E3' : '#555';
-    const highlightColor = '#C67C4E';
+const getStyles = (themeColors) => 
+    StyleSheet.create({
+        container: { flex: 1, backgroundColor: themeColors.primaryBackgroundColor },
 
-    return StyleSheet.create({
-        container: { flex: 1, backgroundColor: primaryBackgroundColor },
-
-        detailSection: {padding: 16,backgroundColor: secondaryBackgroundColor,borderBottomWidth: 1,borderBottomColor: isDarkTheme ? '#555' : '#CCC',},
+        detailSection: {padding: 16,backgroundColor: themeColors.secondaryBackgroundColor,marginBottom: 10},
         carImage: { width: '100%', height: 200, borderRadius: 8, marginBottom: 16 },
-        carTitle: { color: textColor, fontSize: 24, fontWeight: 'bold', marginTop: 10 },
-        carSpecs: { color: textColor, fontSize: 16, marginTop: 5 },
-        carDescription: { color: secondaryTextColor, marginTop: 10 },
+        carTitle: { color: themeColors.textColor, fontSize: 24, fontWeight: 'bold', marginTop: 10 },
+        carSpecs: { color: themeColors.textColor, fontSize: 16, marginTop: 5 },
+        carDescription: { color: themeColors.secondaryTextColor, marginTop: 10 },
 
-        dealerSection: {padding: 16,backgroundColor: tertiaryBackgroundColor,marginVertical: 10,borderRadius: 8,},
-        dealerTitle: { color: textColor, fontSize: 20, fontWeight: 'bold', marginBottom: 5 },
-        dealerName: { color: secondaryTextColor, fontSize: 16 },
-        dealerAddress: { color: secondaryTextColor, fontSize: 16 },
-        dealerCity: { color: secondaryTextColor, fontSize: 16 },
-        dealerContact: { color: secondaryTextColor, fontSize: 16 },
+        dealerSection: {padding: 16,backgroundColor: themeColors.tertiaryBackgroundColor,marginVertical: 10,borderRadius: 8,},
+        dealerTitle: { color: themeColors.textColor, fontSize: 20, fontWeight: 'bold', marginBottom: 5 },
+        dealerName: { color: themeColors.secondaryTextColor, fontSize: 16 },
+        dealerAddress: { color: themeColors.secondaryTextColor, fontSize: 16 },
+        dealerCity: { color: themeColors.secondaryTextColor, fontSize: 16 },
+        dealerContact: { color: themeColors.secondaryTextColor, fontSize: 16 },
 
-        rentalSection: {padding: 16,backgroundColor: secondaryBackgroundColor,marginTop: 10,borderRadius: 8,},
-        rentalTitle: { color: textColor, fontSize: 20, fontWeight: 'bold' },
+        rentalSection: {padding: 16,backgroundColor: themeColors.secondaryBackgroundColor,marginVertical: 10,borderRadius: 8,},
+        rentalTitle: { color: themeColors.textColor, fontSize: 20, fontWeight: 'bold' },
         rentalRow: { flexDirection: 'row', justifyContent: 'space-between', marginVertical: 8 },
-        label: { color: secondaryTextColor, fontSize: 16 },
-        price: { color: highlightColor, fontSize: 16, fontWeight: 'bold' },
-        dateInputTouchable: {backgroundColor: '#F9F2ED',borderRadius: 8,borderWidth: 1,borderColor: '#C67C4E',paddingVertical: 10,paddingHorizontal: 12,justifyContent: 'center',},
+        label: { color: themeColors.secondaryTextColor, fontSize: 16 },
+        price: { color: themeColors.highlightColor, fontSize: 16, fontWeight: 'bold' },
+        dateInputTouchable: {backgroundColor: '#F9F2ED',borderRadius: 8,borderWidth: 1,borderColor: '#9E5C33',paddingVertical: 10,paddingHorizontal: 12,justifyContent: 'center',},
         dateInputText: {color: '#313131',fontSize: 16,},
-        dateInput: {backgroundColor: secondaryTextColor,color: '#313131',borderRadius: 8,padding: 8,width: '48%',},
-        location: { color: highlightColor },
-        deposit: { color: highlightColor, fontSize: 16, fontWeight: 'bold' },
+        dateInput: {backgroundColor: '#F9F2ED',color: '#313131',borderRadius: 8,padding: 8,width: '48%',},
+        location: { color: themeColors.highlightColor },
+        deposit: { color: themeColors.highlightColor, fontSize: 16, fontWeight: 'bold' },
 
-        confirmButton: { backgroundColor: highlightColor, borderRadius: 8, padding: 12, marginTop: 10 },
+        confirmButton: { backgroundColor: themeColors.highlightColor, borderRadius: 8, padding: 12, marginTop: 10 },
         confirmText: { color: '#FFF', textAlign: 'center', fontWeight: 'bold' },
 
-        footer: {backgroundColor: tertiaryBackgroundColor,padding: 16,alignItems: 'center',borderTopWidth: 1,borderTopColor: isDarkTheme ? '#555' : '#CCC',},
-        footerText: { color: textColor, marginTop: 10 },
-        footerCopy: { color: textColor, fontSize: 12, marginTop: 10 },
+        footer: {backgroundColor: themeColors.tertiaryBackgroundColor,padding: 16,alignItems: 'center',borderTopWidth: 1,borderTopColor: themeColors.primaryBackgroundColor,},
+        footerText: { color: themeColors.textColor, marginTop: 10 },
+        footerCopy: { color: themeColors.textColor, fontSize: 16, marginTop: 10 },
 
         loadingContainer: { justifyContent: 'center', alignItems: 'center', flex: 1 },
-        error: { color: textColor, fontSize: 18, textAlign: 'center', marginTop: 20 },
+        error: { color: themeColors.textColor, fontSize: 18, textAlign: 'center', marginTop: 20 },
     });
-};
 
 export default DetailScreen;

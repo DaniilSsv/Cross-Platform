@@ -52,7 +52,7 @@ const CollectionScreen = () => {
     if (isLoading) {
         return (
             <View style={styles.container}>
-                <ActivityIndicator size="large" color={isDarkTheme ? '#EDD6C8' : '#313131'} />
+                <ActivityIndicator size="large" color={textColor} />
             </View>
         );
     }
@@ -89,35 +89,42 @@ const CollectionScreen = () => {
     );
 };
 
-const getStyles = (isDarkTheme) =>
-    StyleSheet.create({
-        safeArea: {flex: 1,backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED',},
-        container: { backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED', flex: 1 },
+const getStyles = (isDarkTheme) => {
+    const primaryBackgroundColor = isDarkTheme ? '#4D2C2C' : '#FFEBE8';
+    const tertiaryBackgroundColor = isDarkTheme ? '#995353' : '#FFC4BA';
+    const textColor = isDarkTheme ? '#FFFFFF' : '#1A1A1A';
+    const secondaryTextColor = isDarkTheme ? '#E5E5E5' : '#4D4D4D';
+
+    return StyleSheet.create({
+        safeArea: {flex: 1,backgroundColor: primaryBackgroundColor},
+        container: { backgroundColor: primaryBackgroundColor, flex: 1 },
+        scrollViewContainer: { alignItems: 'center',},
         
         // Collection Section
-        collectionSection: { padding: 16, backgroundColor: isDarkTheme ? '#313131' : '#F9F2ED' },
-        collectionTitle: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 20, fontWeight: 'bold' },
+        collectionSection: { padding: 16, backgroundColor: primaryBackgroundColor },
+        collectionTitle: { color: textColor, fontSize: 20, fontWeight: 'bold' },
         collectionCars: { flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between' },
         collectionList: {paddingHorizontal: 15},
         collectionHeader: {padding: 15},
 
         // Car Card
         carCardContainer: {borderRadius: 10,width: '100%',aligncars: 'center',},
-        carCardCollection: { width: '100%', backgroundColor:  isDarkTheme ? '#3E3E3E' : '#EDD6C8', marginVertical: 10, borderRadius: 8, padding: 10 },
+        carCardCollection: { width: '100%', backgroundColor:  tertiaryBackgroundColor, marginVertical: 10, borderRadius: 8, padding: 10 },
         carImage: { width: '100%', height: 700, borderRadius: 8, },
-        carDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10, textAlign: 'center', marginBottom: 5, fontWeight: 'bold' },
-        carSubDetails: { color: isDarkTheme ? '#EDD6C8' : '#313131', textAlign: 'center',},
+        carDetails: { color: secondaryTextColor, marginTop: 10, textAlign: 'center', marginBottom: 5, fontWeight: 'bold' },
+        carSubDetails: { color: secondaryTextColor, textAlign: 'center',},
 
         // Search Bar
-        searchContainer: {flexDirection: 'row', aligncars: 'center', backgroundColor: isDarkTheme ? '#555' : '#E3E3E3',
+        searchContainer: {flexDirection: 'row', aligncars: 'center', backgroundColor: isDarkTheme ? '#555' : '#CCC',
         borderRadius: 8, paddingHorizontal: 4, paddingVertical: 4, marginVertical: 10},
-        searchInput: { flex: 1, color: isDarkTheme ? '#E3E3E3' : '#313131', fontSize: 16, paddingVertical: 4},
-        searchBarInput: { color: isDarkTheme ? '#E3E3E3' : '#313131'},
-        searchIcon: { marginRight: 5, fontSize: 20, color: isDarkTheme ? '#EDD6C8' : '#313131'},
+        searchInput: { flex: 1, color: '#313131', fontSize: 16, paddingVertical: 4},
+        searchBarInput: { color: '#313131'},
+        searchIcon: { marginRight: 5, fontSize: 20, color: textColor},
         
-        footer: { backgroundColor: isDarkTheme ? '#3E3E3E' : '#EDD6C8', padding: 16, aligncars: 'center' },
-        footerText: { color: isDarkTheme ? '#EDD6C8' : '#313131', marginTop: 10 },
-        footerCopy: { color: isDarkTheme ? '#EDD6C8' : '#313131', fontSize: 12, marginTop: 10 }
-});
+        footer: { backgroundColor: tertiaryBackgroundColor, padding: 16, aligncars: 'center' },
+        footerText: { color: textColor, marginTop: 10 },
+        footerCopy: { color: textColor, fontSize: 16, marginTop: 10 }
+    });
+};
 
 export default CollectionScreen;
