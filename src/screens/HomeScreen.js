@@ -48,7 +48,7 @@ const getStyles = (themeColors) =>
 
         // Car Cards
         compactCardContainer: {backgroundColor: themeColors.secondaryBackgroundColor,borderRadius: 10,width: '100%',alignItems: 'center',},
-        compactImage: {width: '100%',height: 300,resizeMode: 'cover',borderTopLeftRadius: 10,borderTopRightRadius: 10,},
+        compactImage: {width: '100%',height: 300,borderTopLeftRadius: 10,borderTopRightRadius: 10,},
         compactCarDetails: {fontSize: 18,fontWeight: 'bold',color: themeColors.textColor,textAlign: 'center', marginTop: 10, marginBottom: 5},
         compactCarSubDetails: {fontSize: 16,color: themeColors.textColor,textAlign: 'center',fontStyle: 'italic', marginBottom: 5},
 

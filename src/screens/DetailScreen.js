@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView ,ActivityIndicator, Alert, StyleSheet} from 'react-native';
+import { View, ScrollView ,ActivityIndicator, StyleSheet} from 'react-native';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
@@ -38,7 +38,7 @@ const DetailScreen = ({route}) => {
             })
             .catch((error) => {
                 console.error('Error fetching car details:', error);
-                Alert.alert('Error', 'Unable to fetch car details. Please try again later.');
+                alert('Error', 'Unable to fetch car details. Please try again later.');
             })
             .finally(() => setLoading(false));
     }, []);
@@ -46,16 +46,6 @@ const DetailScreen = ({route}) => {
     
     // Handle rental creation
     const handleRental = (rentalData) => {
-        // Check if the dates are in the future or present
-        const today = new Date();
-        const startDate = new Date(rentalData.startDate);
-        const endDate = new Date(rentalData.endDate);
-
-        if (startDate < today || endDate < today) {
-            Alert.alert('Invalid Date', 'Dates must be in the present or future.');
-            return;
-        }
-
         fetch(`https://stormy-mountain-53708-efbddb5e7d01.herokuapp.com/api/rentals`, {
             method: 'POST',
             headers: {
@@ -67,21 +57,21 @@ const DetailScreen = ({route}) => {
         .then((response) => {
             if (!response.ok) {
                 if (response.status === 409) {
-                    Alert.alert('Error', 'These dates are already taken. Please choose another date.');
+                    alert('These dates are already taken. Please choose another date.')
                     return;
                 }
                 if (response.status === 400) {
-                    Alert.alert('Error', 'Bad request. Please check your input fields.');
+                    alert('Bad request. Please check your input fields.');
                     return;
                 } else {
-                    Alert.alert('Error', 'Network response was not ok.');
+                    alert('Network response was not ok.');
                     return;
                 }
             }
-            Alert.alert('Success', 'Rental confirmed!');
+            alert('Rental confirmed!');
         })
         .catch((error) => {
-            Alert.alert('Error', 'Unable to confirm rental. Please try again later.');
+            alert('Unable to confirm rental. Please try again later.');
         });
     };
 

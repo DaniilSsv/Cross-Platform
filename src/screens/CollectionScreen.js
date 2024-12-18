@@ -83,7 +83,7 @@ const CollectionScreen = () => {
                         onPress={() => navigation.navigate('CarDetails', { car })}
                         accessible={true}
                         accessibilityLabel={`View details for ${car.brand} ${car.model}`}
-                        accessibilityRole="button"
+                        
                         >
                         <CarCard
                             key={car.id}
@@ -92,6 +92,7 @@ const CollectionScreen = () => {
                             title={`${car.brand} | ${car.model}`}
                             subtitle={`${car.year} | ${car.power} hp | ${car.color}`}
                             compact={false}
+                            accessibilityRole="button"
                         />
                     </TouchableOpacity>
                 ))}

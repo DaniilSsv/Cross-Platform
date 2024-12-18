@@ -1,15 +1,15 @@
-// RentalInfoSection Component
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import DateTimePicker from 'react-native-modal-datetime-picker';
+import { View, Text, TextInput, TouchableOpacity, Platform } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker'; // For iOS/Android
+import DatePicker from 'react-datepicker'; // For Web
+import "react-datepicker/dist/react-datepicker.css"; // CSS import for styling
 
 const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const [isStartPickerVisible, setStartPickerVisible] = useState(false);
-    const [isEndPickerVisible, setEndPickerVisible] = useState(false);
-
     const [email, setEmail] = useState('');
+    const [startDate, setStartDate] = useState(new Date()); // Default to today's date
+    const [endDate, setEndDate] = useState(new Date()); // Default to today's date
+    const [showStartDatePicker, setShowStartDatePicker] = useState(false);
+    const [showEndDatePicker, setShowEndDatePicker] = useState(false);
 
     const handleConfirm = () => {
         if (!startDate || !endDate || !email) {
@@ -17,21 +17,43 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
             return;
         }
 
-        // Format dates to "YYYY-MM-DD"
-        const formattedStartDate = startDate.toISOString().split('T')[0]; // "2024-12-13"
-        const formattedEndDate = endDate.toISOString().split('T')[0]; // "2024-12-14"
+        const today = new Date();
+
+        const formattedStartDate = startDate.toISOString().split('T')[0]; // "2024-12-21"
+        const formattedEndDate = endDate.toISOString().split('T')[0];
+
+        if (formattedStartDate < today || formattedEndDate < today) {
+            alert('Invalid Date', 'Dates must be in the present or future.');
+            return;
+        }
+
+        console.log("Start Date:", formattedStartDate);
+        console.log("End Date:", formattedEndDate);
 
         const rentalData = {
             carId: car.carId,
-            rentalPrice: 100, // Replace with dynamic price if needed
-            startDate: formattedStartDate, // Format dates properly
-            endDate: formattedEndDate,
-            deposit: 500, // Replace with dynamic deposit if needed
+            rentalPrice: 100, 
+            startDate: startDate,
+            endDate: endDate,
+            deposit: 500,
             pickupLocation: `${car.dealerAddress} ${car.dealerCity} ${car.dealerPostcode}`,
             email: email,
         };
 
         onConfirmRental(rentalData);
+    };
+
+    // Handle Date change for Start and End Date Pickers (Mobile)
+    const onStartDateChange = (event, selectedDate) => {
+        const currentDate = selectedDate || startDate;
+        setShowStartDatePicker(false);
+        setStartDate(currentDate);
+    };
+
+    const onEndDateChange = (event, selectedDate) => {
+        const currentDate = selectedDate || endDate;
+        setShowEndDatePicker(false);
+        setEndDate(currentDate);
     };
 
     return (
@@ -40,59 +62,85 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
 
             {/* Rental Price */}
             <View style={styles.rentalRow}>
-                <Text style={styles.label} accessibilityLabel="Label: Rental Price">Rental Price:</Text>
-                <Text style={styles.price} accessibilityLabel="Rental Price: €500 per day">€500/day</Text>
+                <Text style={styles.label} accessibilityLabel="Rental Price">Rental Price:</Text>
+                <Text style={styles.price} accessibilityLabel="€500 per day">€500/day</Text>
             </View>
 
             {/* Date Selection */}
             <View style={styles.rentalRow}>
-                <Text style={styles.label} accessibilityLabel="Label: Start Date">Start Date:</Text>
-                <TouchableOpacity style={styles.dateInputTouchable} onPress={() => setStartPickerVisible(true)} accessibilityRole="button" accessibilityLabel="Select Start Date">
-                    <Text style={styles.dateInputText}>
-                        {startDate ? startDate.toDateString() : 'Select Start Date'}
-                    </Text>
-                </TouchableOpacity>
-                <DateTimePicker
-                    isVisible={isStartPickerVisible}
-                    mode="date"
-                    onConfirm={(date) => {
-                        setStartDate(date);
-                        setStartPickerVisible(false);
-                    }}
-                    onCancel={() => setStartPickerVisible(false)}
-                    accessibilityLabel="Start date picker"
-                />
+                <Text style={styles.label} accessibilityLabel="Start Date">Start Date:</Text>
+                {Platform.OS === 'web' ? (
+                    <DatePicker
+                        selected={startDate}
+                        onChange={date => setStartDate(date)}
+                        dateFormat="yyyy-MM-dd"
+                        placeholderText="Select Start Date"
+                        className="dateInput" // Custom styling for web
+                    />
+                ) : (
+                    <TouchableOpacity 
+                        style={styles.dateInputTouchable} 
+                        onPress={() => setShowStartDatePicker(true)}
+                        accessibilityLabel="Select Start Date"
+                    >
+                        <Text style={styles.dateInputText}>
+                            {startDate.toISOString().split('T')[0]}
+                        </Text>
+                    </TouchableOpacity>
+                )}
+                {showStartDatePicker && Platform.OS !== 'web' && (
+                    <DateTimePicker
+                        value={startDate}
+                        mode="date"
+                        display="default"
+                        onChange={onStartDateChange}
+                    />
+                )}
             </View>
 
             <View style={styles.rentalRow}>
-                <Text style={styles.label} accessibilityLabel="Label: End Date">End Date:</Text>
-                <TouchableOpacity style={styles.dateInputTouchable} onPress={() => setEndPickerVisible(true)} accessibilityRole="button" accessibilityLabel="Select End Date">
-                    <Text style={styles.dateInputText}>
-                        {endDate ? endDate.toDateString() : 'Select End Date'}
-                    </Text>
-                </TouchableOpacity>
-                <DateTimePicker
-                    isVisible={isEndPickerVisible}
-                    mode="date"
-                    onConfirm={(date) => {
-                        setEndDate(date);
-                        setEndPickerVisible(false);
-                    }}
-                    onCancel={() => setEndPickerVisible(false)}
-                    accessibilityLabel="End date picker"
-                />
+                <Text style={styles.label} accessibilityLabel="End Date">End Date:</Text>
+                {Platform.OS === 'web' ? (
+                    <DatePicker
+                        selected={endDate}
+                        onChange={date => setEndDate(date)}
+                        dateFormat="yyyy-MM-dd"
+                        placeholderText="Select End Date"
+                        className="dateInput" // Custom styling for web
+                    />
+                ) : (
+                    <TouchableOpacity 
+                        style={styles.dateInputTouchable} 
+                        onPress={() => setShowEndDatePicker(true)}
+                        accessibilityLabel="Select End Date"
+                    >
+                        <Text style={styles.dateInputText}>
+                            {endDate.toISOString().split('T')[0]}
+                        </Text>
+                    </TouchableOpacity>
+                )}
+                {showEndDatePicker && Platform.OS !== 'web' && (
+                    <DateTimePicker
+                        value={endDate}
+                        mode="date"
+                        display="default"
+                        onChange={onEndDateChange}
+                    />
+                )}
             </View>
 
             {/* Location */}
             <View style={styles.rentalRow}>
-                <Text style={styles.label} accessibilityLabel="Label: Pickup Location">Pickup Location:</Text>
-                <Text style={styles.location} accessibilityLabel={`Location: ${car.dealerAddress} ${car.dealerCity}`}>{car.dealerAddress} {car.dealerCity}</Text>
+                <Text style={styles.label} accessibilityLabel="Pickup Location">Pickup Location:</Text>
+                <Text style={styles.location} accessibilityLabel={`Location: ${car.dealerAddress} ${car.dealerCity}`}>
+                    {car.dealerAddress} {car.dealerCity}
+                </Text>
             </View>
 
             {/* Deposit */}
             <View style={styles.rentalRow}>
-                <Text style={styles.label} accessibilityLabel="Label: Deposit">Deposit:</Text>
-                <Text style={styles.deposit} accessibilityLabel="Deposit: €100">€1000</Text>
+                <Text style={styles.label} accessibilityLabel="Deposit">Deposit:</Text>
+                <Text style={styles.deposit} accessibilityLabel="€1000">€1000</Text>
             </View>
 
             {/* User Email */}
