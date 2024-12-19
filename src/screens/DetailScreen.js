@@ -123,7 +123,7 @@ const getStyles = (themeColors) =>
 
         rentalSection: {padding: 16,backgroundColor: themeColors.secondaryBackgroundColor,marginVertical: 10,borderRadius: 8,},
         rentalTitle: { color: themeColors.textColor, fontSize: 20, fontWeight: 'bold' },
-        rentalRow: { flexDirection: 'row', justifyContent: 'space-between', marginVertical: 8 },
+        rentalRow: { flexDirection: 'row', justifyContent: 'space-between', marginVertical: 8},
         label: { color: themeColors.secondaryTextColor, fontSize: 16 },
         price: { color: themeColors.highlightColor, fontSize: 16, fontWeight: 'bold' },
         dateInputTouchable: {backgroundColor: '#F9F2ED',borderRadius: 8,borderWidth: 1,borderColor: '#9E5C33',paddingVertical: 10,paddingHorizontal: 12,justifyContent: 'center',},

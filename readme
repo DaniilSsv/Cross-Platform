@@ -7,4 +7,6 @@ https://www.aecars.be/home/
 
 https://webaim.org/resources/contrastchecker/
 
+https://legacy.reactjs.org/docs/hooks-effect.html
+
 props.pointerEvents is deprecated maar nergens te vinden in mijn code, ik ga ervan uit dat dit door een dependency is.

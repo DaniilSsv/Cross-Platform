@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, Platform } from 'react-native';
 import { ImagePathMap } from '../assets/ImagePathMap';
 
-const CarDetailSection = ({ styles, carDealer }) => {    
+const CarDetailSection = ({ styles, carDealer }) => {
     return(
     <View style={styles.detailSection}>
         <Image source={ImagePathMap[carDealer.imageUri]} style={styles.carImage} accessibilityLabel={`Image of ${carDealer.brand} ${carDealer.model}`} accessibilityRole="image"/>

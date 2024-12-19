@@ -21,8 +21,8 @@ const StackNavigator = () => {
         name="CarDetails"
         component={DetailScreen}
         options={{
-          headerStyle: { backgroundColor: '#313131' },
-          headerTintColor: '#C67C4E',
+          headerStyle: { backgroundColor: '#FFEBE8' },
+          headerTintColor: '#1A1A1A',
           title: 'Car Details',
         }}
       />

@@ -75,7 +75,6 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
                         onChange={date => setStartDate(date)}
                         dateFormat="yyyy-MM-dd"
                         placeholderText="Select Start Date"
-                        className="dateInput" // Custom styling for web
                     />
                 ) : (
                     <TouchableOpacity 
@@ -106,7 +105,6 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
                         onChange={date => setEndDate(date)}
                         dateFormat="yyyy-MM-dd"
                         placeholderText="Select End Date"
-                        className="dateInput" // Custom styling for web
                     />
                 ) : (
                     <TouchableOpacity 

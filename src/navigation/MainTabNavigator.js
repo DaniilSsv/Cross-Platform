@@ -27,10 +27,10 @@ const MainTabNavigator = () => {
             return <Icon name={iconName} size={20} color={color} />;
           },
           tabBarStyle: {
-            backgroundColor: '#313131',
+            backgroundColor: '#FFEBE8',
           },
-          tabBarActiveTintColor: '#C67C4E',
-          tabBarInactiveTintColor: '#E3E3E3',
+          tabBarActiveTintColor: '#1A1A1A',
+          tabBarInactiveTintColor: '#4D4D4D',
           headerShown: false,
         })}
       >
