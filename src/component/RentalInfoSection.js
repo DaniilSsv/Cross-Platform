@@ -4,12 +4,16 @@ import DateTimePicker from '@react-native-community/datetimepicker'; // For iOS/
 import DatePicker from 'react-datepicker'; // For Web
 import "react-datepicker/dist/react-datepicker.css"; // CSS import for styling
 
+import { useCurrency } from '../context/CurrencyContext';
+
 const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
     const [email, setEmail] = useState('');
     const [startDate, setStartDate] = useState(new Date()); // Default to today's date
     const [endDate, setEndDate] = useState(new Date()); // Default to today's date
     const [showStartDatePicker, setShowStartDatePicker] = useState(false);
     const [showEndDatePicker, setShowEndDatePicker] = useState(false);
+
+    const { currency } = useCurrency();
 
     const handleConfirm = () => {
         if (!startDate || !endDate || !email) {
@@ -63,7 +67,7 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
             {/* Rental Price */}
             <View style={styles.rentalRow}>
                 <Text style={styles.label} accessibilityLabel="Rental Price">Rental Price:</Text>
-                <Text style={styles.price} accessibilityLabel="€500 per day">€500/day</Text>
+                <Text style={styles.price} accessibilityLabel="500 per day">{currency} 500/day</Text>
             </View>
 
             {/* Date Selection */}
@@ -138,7 +142,7 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
             {/* Deposit */}
             <View style={styles.rentalRow}>
                 <Text style={styles.label} accessibilityLabel="Deposit">Deposit:</Text>
-                <Text style={styles.deposit} accessibilityLabel="€1000">€1000</Text>
+                <Text style={styles.deposit} accessibilityLabel="€1000">{currency} 1000</Text>
             </View>
 
             {/* User Email */}

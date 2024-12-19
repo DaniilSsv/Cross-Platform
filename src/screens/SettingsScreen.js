@@ -3,8 +3,11 @@ import { View, Text, Switch, ScrollView, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 // Theme
-import { useTheme } from '../styles/theme/ContextAPI';
 import colors from '../styles/theme/colors';
+
+// Context
+import { useTheme } from '../styles/theme/ContextAPI';
+import { useCurrency } from '../context/CurrencyContext';
 
 //components
 import Footer from '../component/Footer';
@@ -14,7 +17,7 @@ const SettingsScreen = () => {
     const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme; // Choose theme colors
     const styles = getStyles(themeColors);
 
-    const [selectedCurrency, setSelectedCurrency] = useState('EUR');
+    const {currency, setCurrency} = useCurrency();
 
     return (
         <View style={styles.container}>
@@ -37,8 +40,8 @@ const SettingsScreen = () => {
                     <View style={styles.settingItem}>
                         <Text style={styles.settingLabel}>Select Currency</Text>
                         <Picker
-                            selectedValue={selectedCurrency}
-                            onValueChange={(itemValue) => setSelectedCurrency(itemValue)}
+                            selectedValue={currency}
+                            onValueChange={(itemValue) => setCurrency(itemValue)}
                             style={styles.picker}
                         >
                             <Picker.Item label="Euro (€)" value="EUR" />

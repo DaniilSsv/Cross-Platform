@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-// Theme
+// Context
 import { ThemeProvider } from './src/styles/theme/ContextAPI';
+import { CurrencyProvider } from './src/context/CurrencyContext';
 
 // Navigators
 import StackNavigator from './src/navigation/StackNavigator';
@@ -10,9 +11,11 @@ import StackNavigator from './src/navigation/StackNavigator';
 export default function App() {
   return (
     <ThemeProvider>
-      <NavigationContainer>
-        <StackNavigator />
-      </NavigationContainer>
+      <CurrencyProvider>
+        <NavigationContainer>
+          <StackNavigator />
+        </NavigationContainer>
+      </CurrencyProvider>
     </ThemeProvider>
   );
 };
