@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { ScrollView, SafeAreaView, StatusBar, StyleSheet, Platform } from 'react-native';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
@@ -44,7 +44,7 @@ const getStyles = (themeColors) =>
         popularGrid: {padding: 20,justifyContent: 'space-between',},
         popularTitle: {fontSize: 24,fontWeight: 'bold',color: themeColors.textColor,marginTop: 20,marginLeft: 20,},
         popularCars: {flexDirection: 'row',flexWrap: 'wrap',justifyContent: 'space-between',padding: 15,},
-        carCard: {width: '48%',marginBottom: 10,marginLeft: 5},
+        carCard: {width: Platform.OS === 'web' ? '48%' : '98%',marginBottom: 10,marginLeft: 5},
 
         // Car Cards
         compactCardContainer: {backgroundColor: themeColors.secondaryBackgroundColor,borderRadius: 10,width: '100%',alignItems: 'center',},

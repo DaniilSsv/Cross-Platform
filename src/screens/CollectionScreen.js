@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator, TouchableOpacity, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ActivityIndicator, TouchableOpacity, SafeAreaView, ScrollView, StyleSheet, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // Theme
@@ -118,7 +118,7 @@ const getStyles = (themeColors) =>
         // Car Card
         carCardContainer: {borderRadius: 10,width: '100%',aligncars: 'center',},
         carCardCollection: { width: '100%', backgroundColor:  themeColors.tertiaryBackgroundColor, marginVertical: 10, borderRadius: 8, padding: 10 },
-        carImage: { width: '100%', height: 700, borderRadius: 8, },
+        carImage: { width: '100%', height: Platform.OS === 'web' ? 500 : 200, borderRadius: 8, },
         carDetails: { color: themeColors.secondaryTextColor, marginTop: 10, textAlign: 'center', marginBottom: 5, fontWeight: 'bold' },
         carSubDetails: { color: themeColors.secondaryTextColor, textAlign: 'center',},
 

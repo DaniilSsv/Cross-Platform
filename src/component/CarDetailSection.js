@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, Platform } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import { ImagePathMap } from '../assets/ImagePathMap';
 
 const CarDetailSection = ({ styles, carDealer }) => {

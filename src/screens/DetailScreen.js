@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView ,ActivityIndicator, StyleSheet} from 'react-native';
+import { View, ScrollView ,ActivityIndicator, StyleSheet, Platform} from 'react-native';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
@@ -14,7 +14,7 @@ import Footer from '../component/Footer';
 // Detail Screen
 const DetailScreen = ({route}) => {
     const { car } = route.params;
-    carId = car.id;
+    const carId = car.id;
 
     const { isDarkTheme } = useTheme();
     const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme; // Choose theme colors
@@ -109,7 +109,7 @@ const getStyles = (themeColors) =>
         container: { flex: 1, backgroundColor: themeColors.primaryBackgroundColor },
 
         detailSection: {padding: 16,backgroundColor: themeColors.secondaryBackgroundColor,marginBottom: 10},
-        carImage: { width: '100%', height: 200, borderRadius: 8, marginBottom: 16 },
+        carImage: { width: '100%', height: Platform.OS === 'web' ? 500 : 250, borderRadius: 8, marginBottom: 16 },
         carTitle: { color: themeColors.textColor, fontSize: 24, fontWeight: 'bold', marginTop: 10 },
         carSpecs: { color: themeColors.textColor, fontSize: 16, marginTop: 5 },
         carDescription: { color: themeColors.secondaryTextColor, marginTop: 10 },

@@ -18,10 +18,32 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.kaljmarik.CarRental"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
+    },
+    "build": {
+      "preview": {
+        "android": {
+          "buildType": "apk"
+        }
+      },
+      "preview2": {
+        "android": {
+          "gradleCommand": ":app:assembleRelease"
+        }
+      },
+      "preview3": {
+        "developmentClient": true
+      },
+      "production": {}
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c06effb8-4642-4dc7-8f3b-3fa7e2c404c0"
+      }
     }
   }
 }
