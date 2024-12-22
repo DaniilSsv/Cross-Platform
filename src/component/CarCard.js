@@ -4,7 +4,7 @@ import { ImagePathMap } from '../assets/ImagePathMap';
 
 const CarCard = ({ styles, imageUri, title, subtitle, compact = false }) => {
     return (
-        <View style={compact ? styles.compactCardContainer : styles.carCardContainer} accessibilityRole="button" accessibilityLabel={`${title}, ${subtitle}`}>
+        <View style={compact ? styles.compactCardContainer : styles.carCardContainer} accessible={true} accessibilityRole="button" accessibilityLabel={`${title}, ${subtitle}`}>
             <Image style={compact ? styles.compactImage : styles.carImage} resizeMode='cover' source={ImagePathMap[imageUri]} accessible={true} accessibilityLabel={`Image of ${title}`}/>
             <View style={styles.carTextContainer}>
             <Text style={compact ? styles.compactCarDetails : styles.carDetails} numberOfLines={1} ellipsizeMode="tail" accessibilityLabel={title}>{title}</Text>

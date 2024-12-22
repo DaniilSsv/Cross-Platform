@@ -79,7 +79,6 @@ const CollectionScreen = () => {
                         activeOpacity={0.8}
                         onPress={() => navigation.navigate('CarDetails', { car })}
                         accessibilityLabel={`View details for ${car.brand} ${car.model}`}
-                        accessibilityRole="button"
                         >
                         <CarCard
                             key={car.id}
