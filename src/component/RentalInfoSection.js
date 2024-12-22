@@ -31,9 +31,6 @@ const RentalInfoSection = ({ styles, car, onConfirmRental }) => {
             return;
         }
 
-        console.log("Start Date:", formattedStartDate);
-        console.log("End Date:", formattedEndDate);
-
         const rentalData = {
             carId: car.carId,
             rentalPrice: 100, 

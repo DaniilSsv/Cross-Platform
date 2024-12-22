@@ -1,6 +1,10 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+// Theme
+import { useTheme } from '../styles/theme/ContextAPI';
+import colors from '../styles/theme/colors';
+
 // Navigators
 import MainTabNavigator from './MainTabNavigator';
 
@@ -11,6 +15,9 @@ import RentalListScreen from '../screens/RentalListScreen';
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
+  const { isDarkTheme } = useTheme();
+  const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme;
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -22,8 +29,8 @@ const StackNavigator = () => {
         name="Rentals"
         component={RentalListScreen}
         options={{
-          headerStyle: { backgroundColor: '#FFEBE8' },
-          headerTintColor: '#1A1A1A',
+          headerStyle: { backgroundColor: themeColors.primaryBackgroundColor },
+          headerTintColor: themeColors.textColor,
           title: 'Car Details',
         }}
       />
@@ -31,8 +38,8 @@ const StackNavigator = () => {
         name="CarDetails"
         component={DetailScreen}
         options={{
-          headerStyle: { backgroundColor: '#FFEBE8' },
-          headerTintColor: '#1A1A1A',
+          headerStyle: { backgroundColor: themeColors.primaryBackgroundColor },
+          headerTintColor: themeColors.textColor,
           title: 'Car Details',
         }}
       />

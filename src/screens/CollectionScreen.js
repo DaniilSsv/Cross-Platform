@@ -13,7 +13,7 @@ import CarCard from '../component/CarCard';
 
 const CollectionScreen = () => {
     const { isDarkTheme } = useTheme();
-    const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme; // Choose theme colors
+    const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme;
     const styles = getStyles(themeColors);
 
     const navigation = useNavigation();
@@ -113,7 +113,7 @@ const getStyles = (themeColors) =>
         // Car Card
         carCardContainer: {borderRadius: 10,width: '100%',aligncars: 'center',},
         carCardCollection: { width: '100%', backgroundColor:  themeColors.tertiaryBackgroundColor, marginVertical: 10, borderRadius: 8, padding: 10 },
-        carImage: { width: '100%', height: Platform.OS === 'web' ? 500 : 200, borderRadius: 8, },
+        carImage: { width: '100%', height: Platform.OS === 'web' ? 800 : 200, borderRadius: 8, },
         carDetails: { color: themeColors.secondaryTextColor, marginTop: 10, textAlign: 'center', marginBottom: 5, fontWeight: 'bold' },
         carSubDetails: { color: themeColors.secondaryTextColor, textAlign: 'center',},
 

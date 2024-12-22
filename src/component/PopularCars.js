@@ -1,6 +1,6 @@
 import React, { useEffect, useState }from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 
 import CarCard from './CarCard';
 
@@ -19,7 +19,7 @@ const PopularCars = ({styles}) => {
                 const data = await response.json();
                 setCars(data);
             } catch (error) {
-                Alert.alert('Error', error.message);
+                alert('Error', error.message);
             } finally {
                 setLoading(false);
             }

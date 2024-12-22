@@ -2,6 +2,10 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+// Theme
+import { useTheme } from '../styles/theme/ContextAPI';
+import colors from '../styles/theme/colors';
+
 // Screens
 import HomeScreen from '../screens/HomeScreen';
 import CollectionScreen from '../screens/CollectionScreen';
@@ -10,6 +14,9 @@ import SettingsScreen from '../screens/SettingsScreen';
 const Tab = createBottomTabNavigator();
 
 const MainTabNavigator = () => {
+    const { isDarkTheme } = useTheme();
+    const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme;
+
     return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -27,10 +34,10 @@ const MainTabNavigator = () => {
             return <Icon name={iconName} size={20} color={color} />;
           },
           tabBarStyle: {
-            backgroundColor: '#FFEBE8',
+            backgroundColor: themeColors.primaryBackgroundColor,
           },
-          tabBarActiveTintColor: '#1A1A1A',
-          tabBarInactiveTintColor: '#4D4D4D',
+          tabBarActiveTintColor: themeColors.highlightColor,
+          tabBarInactiveTintColor: themeColors.secondaryTextColor,
           headerShown: false,
         })}
       >
@@ -39,6 +46,6 @@ const MainTabNavigator = () => {
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
     );
-  };
+};
 
   export default MainTabNavigator;

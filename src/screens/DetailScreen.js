@@ -23,7 +23,7 @@ const DetailScreen = ({route}) => {
     const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme; // Choose theme colors
     const styles = getStyles(themeColors);
 
-    // State Management
+    // State Management 
     const [carDetails, setCarDetails] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -48,38 +48,40 @@ const DetailScreen = ({route}) => {
         fetchCarDetails();
     }, [carId]);
 
-    
     // Handle rental creation
-    const handleRental = (rentalData) => {
-        fetch(`https://stormy-mountain-53708-efbddb5e7d01.herokuapp.com/api/rentals`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(rentalData),
-        })
-        // we willen geen error gooien in geval dat er iets verkeerd loopt. we controleren de response statusen die wij hebben en geven de nodige feedback weer in een alert
-        .then((response) => {
-            if (!response.ok) {
-                if (response.status === 409) {
-                    alert('These dates are already taken. Please choose another date.')
-                    return;
+    const handleRental = async (rentalData) => {
+        try {
+            const response = await fetch(
+                'https://stormy-mountain-53708-efbddb5e7d01.herokuapp.com/api/rentals',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(rentalData),
                 }
-                if (response.status === 400) {
-                    alert('Bad request. Please check your input fields.');
-                    return;
-                } else {
-                    alert('Network response was not ok.');
-                    return;
+            );
+    
+            if (!response.ok) {
+                switch (response.status) {
+                    case 409:
+                        alert('These dates are already taken. Please view the rented dates using the button.');
+                        return;
+                    case 400:
+                        alert('Please check your input fields. Dates cannot be in the past');
+                        return;
+                    default:
+                        alert('Network response was not ok.');
+                        return;
                 }
             }
+    
             alert('Rental confirmed!');
-        })
-        .catch((error) => {
+        } catch (error) {
+            console.error('Error during rental confirmation:', error);
             alert('Unable to confirm rental. Please try again later.');
-        });
-    };
-
+        }
+    };   
 
     if (loading) {
         return (
@@ -117,7 +119,7 @@ const getStyles = (themeColors) =>
         container: { flex: 1, backgroundColor: themeColors.primaryBackgroundColor },
 
         detailSection: {padding: 16,backgroundColor: themeColors.secondaryBackgroundColor,marginBottom: 10},
-        carImage: { width: '100%', height: Platform.OS === 'web' ? 500 : 250, borderRadius: 8, marginBottom: 16 },
+        carImage: { width: '100%', height: Platform.OS === 'web' ? 700 : 250, borderRadius: 8, marginBottom: 16 },
         carTitle: { color: themeColors.textColor, fontSize: 24, fontWeight: 'bold', marginTop: 10 },
         carSpecs: { color: themeColors.textColor, fontSize: 16, marginTop: 5 },
         carDescription: { color: themeColors.secondaryTextColor, marginTop: 10 },
