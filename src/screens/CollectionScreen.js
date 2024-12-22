@@ -8,7 +8,6 @@ import colors from '../styles/theme/colors';
 
 // Components
 import SearchBar from '../component/SearchBar';
-import Footer from '../component/Footer';
 import CarCard from '../component/CarCard';
 
 const CollectionScreen = () => {
@@ -92,7 +91,6 @@ const CollectionScreen = () => {
                     </TouchableOpacity>
                 ))}
                 </View>
-                <Footer styles={styles} />
             </ScrollView>
         </SafeAreaView>
     );
@@ -123,10 +121,6 @@ const getStyles = (themeColors) =>
         searchInput: { flex: 1, color: '#313131', fontSize: 16, paddingVertical: 4},
         searchBarInput: { color: '#313131'},
         searchIcon: { marginRight: 5, fontSize: 20, color: '#1A1A1A'},
-        
-        footer: { backgroundColor: themeColors.tertiaryBackgroundColor, padding: 16, alignItems: 'center' },
-        footerText: { color: themeColors.textColor, marginTop: 10,},
-        footerCopy: { color: themeColors.textColor, fontSize: 16, marginTop: 10,}
     });
 
 export default CollectionScreen;

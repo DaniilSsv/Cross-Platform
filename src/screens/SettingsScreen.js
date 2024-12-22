@@ -9,9 +9,6 @@ import colors from '../styles/theme/colors';
 import { useTheme } from '../styles/theme/ContextAPI';
 import { useCurrency } from '../context/CurrencyContext';
 
-//components
-import Footer from '../component/Footer';
-
 const SettingsScreen = () => {
     const { isDarkTheme, toggleTheme } = useTheme();
     const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme;
@@ -53,7 +50,6 @@ const SettingsScreen = () => {
                     </View>
                 </View>
             </ScrollView>
-            <Footer styles={styles} />
         </View>
     );
 };
@@ -68,10 +64,6 @@ const getStyles = (themeColors) =>
         settingItem: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 },
         settingLabel: { color: themeColors.textColor, fontSize: 18 },
         picker: { width: 150, color: themeColors.textColor, backgroundColor: themeColors.primaryBackgroundColor},
-
-        footer: { backgroundColor: themeColors.tertiaryBackgroundColor, padding: 16, alignItems: 'center' },
-        footerText: { color: themeColors.textColor, marginTop: 10 },
-        footerCopy: { color: themeColors.textColor, fontSize: 16, marginTop: 10 },
     });
 
 export default SettingsScreen;

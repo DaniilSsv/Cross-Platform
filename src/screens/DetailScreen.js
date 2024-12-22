@@ -10,7 +10,6 @@ import colors from '../styles/theme/colors';
 import CarDetailSection from '../component/CarDetailSection';
 import DealerInfoSection from '../component/DealerInfoSection';
 import RentalInfoSection from '../component/RentalInfoSection';
-import Footer from '../component/Footer';
 
 // Detail Screen
 const DetailScreen = ({route}) => {
@@ -108,7 +107,6 @@ const DetailScreen = ({route}) => {
                     <Text style={styles.confirmText}>View Rented dates for this car</Text>
                 </TouchableOpacity>
                 <RentalInfoSection styles={styles} car={carDetails} onConfirmRental={handleRental}/>
-                <Footer styles={styles} />
             </ScrollView> 
         </View>
     );
@@ -144,10 +142,6 @@ const getStyles = (themeColors) =>
 
         confirmButton: { backgroundColor: themeColors.highlightColor, borderRadius: 8, padding: 12, marginTop: 10 },
         confirmText: { color: '#FFF', textAlign: 'center', fontWeight: 'bold' },
-
-        footer: {backgroundColor: themeColors.tertiaryBackgroundColor,padding: 16,alignItems: 'center'},
-        footerText: { color: themeColors.textColor, marginTop: 10 },
-        footerCopy: { color: themeColors.textColor, fontSize: 16, marginTop: 10 },
 
         loadingContainer: { justifyContent: 'center', alignItems: 'center', flex: 1 },
         error: { color: themeColors.textColor, fontSize: 18, textAlign: 'center', marginTop: 20 },

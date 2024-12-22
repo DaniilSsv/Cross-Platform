@@ -56,8 +56,7 @@ const getStyles = (themeColors) =>
         seeAllText: { color: '#C67C4E' },
 
         footer: { backgroundColor: themeColors.tertiaryBackgroundColor, padding: 16, alignItems: 'center' },
-        footerText: { color: themeColors.textColor, marginTop: 10 },
-        footerCopy: { color: themeColors.textColor, fontSize: 16, marginTop: 10 },
+        footerText: { color: themeColors.textColor},
     });
 
 export default HomeScreen;
