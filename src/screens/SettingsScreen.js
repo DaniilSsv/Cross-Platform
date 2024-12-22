@@ -14,7 +14,7 @@ import Footer from '../component/Footer';
 
 const SettingsScreen = () => {
     const { isDarkTheme, toggleTheme } = useTheme();
-    const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme; // Choose theme colors
+    const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme;
     const styles = getStyles(themeColors);
 
     const {currency, setCurrency} = useCurrency();
@@ -24,25 +24,27 @@ const SettingsScreen = () => {
             <ScrollView contentContainerStyle={styles.scrollContainer}>
 
                 <View style={styles.settingsSection}>
-                    <Text style={styles.settingsTitle}>Theme</Text>
+                    <Text style={styles.settingsTitle} accessibilityRole="header">Theme</Text>
                     <View style={styles.settingItem}>
                         <Text style={styles.settingLabel}>Dark Mode</Text>
                         <Switch
                             value={isDarkTheme}
                             onValueChange={toggleTheme}
                             thumbColor={isDarkTheme ? '#C67C4E' : '#E3E3E3'}
+                            accessibilityLabel="Toggle dark mode on or off"
                         />
                     </View>
                 </View>
 
                 <View style={styles.settingsSection}>
-                    <Text style={styles.settingsTitle}>Currency</Text>
+                    <Text style={styles.settingsTitle} accessibilityRole="header">Currency</Text>
                     <View style={styles.settingItem}>
                         <Text style={styles.settingLabel}>Select Currency</Text>
                         <Picker
                             selectedValue={currency}
                             onValueChange={(itemValue) => setCurrency(itemValue)}
                             style={styles.picker}
+                            accessibilityLabel="Choose your preffered currency"
                         >
                             <Picker.Item label="Euro (€)" value="EUR" />
                             <Picker.Item label="US Dollar ($)" value="USD" />

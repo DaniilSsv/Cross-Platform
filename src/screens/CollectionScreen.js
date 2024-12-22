@@ -23,7 +23,6 @@ const CollectionScreen = () => {
     const [filteredCars, setFilteredCars] = useState([]);
 
     useEffect(() => {
-        // Fetch cars from the API
         const fetchCars = async () => {
             try {
                 const response = await fetch('https://stormy-mountain-53708-efbddb5e7d01.herokuapp.com/api/cars');
@@ -63,7 +62,7 @@ const CollectionScreen = () => {
         <SafeAreaView style={styles.safeArea}>
             <ScrollView contentContainerStyle={styles.scrollViewContainer}>
                 <View style={styles.collectionHeader}>
-                    <Text style={styles.collectionTitle} accessible={true} accessibilityLabel="Our Vehicles Section">OUR VEHICLES</Text>
+                    <Text style={styles.collectionTitle} accessibilityLabel="Our Vehicles Section">OUR VEHICLES</Text>
                     <SearchBar
                         placeholder="Search for cars..."
                         searchQuery={searchQuery}
@@ -71,7 +70,6 @@ const CollectionScreen = () => {
                         styles={styles}
                         accessible={true}
                         accessibilityLabel="Search Bar"
-                        accessibilityRole="search"
                     />
                 </View>
                 <View style={styles.collectionList}>
@@ -81,9 +79,8 @@ const CollectionScreen = () => {
                         style={styles.carCardCollection}
                         activeOpacity={0.8}
                         onPress={() => navigation.navigate('CarDetails', { car })}
-                        accessible={true}
                         accessibilityLabel={`View details for ${car.brand} ${car.model}`}
-                        
+                        accessibilityRole="button"
                         >
                         <CarCard
                             key={car.id}
@@ -91,8 +88,6 @@ const CollectionScreen = () => {
                             imageUri={car.imageUri}
                             title={`${car.brand} | ${car.model}`}
                             subtitle={`${car.year} | ${car.power} hp | ${car.color}`}
-                            compact={false}
-                            accessibilityRole="button"
                         />
                     </TouchableOpacity>
                 ))}

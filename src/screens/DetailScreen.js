@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView ,ActivityIndicator, StyleSheet, Platform} from 'react-native';
+import { View, ScrollView ,ActivityIndicator, StyleSheet, Platform, TouchableOpacity, Text} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 // Theme
 import { useTheme } from '../styles/theme/ContextAPI';
@@ -16,6 +17,8 @@ const DetailScreen = ({route}) => {
     const { car } = route.params;
     const carId = car.id;
 
+    const navigation = useNavigation();
+
     const { isDarkTheme } = useTheme();
     const themeColors = isDarkTheme ? colors.darkTheme : colors.lightTheme; // Choose theme colors
     const styles = getStyles(themeColors);
@@ -26,22 +29,24 @@ const DetailScreen = ({route}) => {
 
     // Fetch car details with dealer info
     useEffect(() => {
-        fetch(`https://stormy-mountain-53708-efbddb5e7d01.herokuapp.com/api/cars/carWithDealer/${carId}`) // Adjust the endpoint and ID as needed
-            .then((response) => {
+        const fetchCarDetails = async () => {
+            try {
+                const response = await fetch(`https://stormy-mountain-53708-efbddb5e7d01.herokuapp.com/api/cars/carWithDealer/${carId}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json();
-            })
-            .then((data) => {
+                const data = await response.json();
                 setCarDetails(data);
-            })
-            .catch((error) => {
+            } catch (error) {
                 console.error('Error fetching car details:', error);
-                alert('Error', 'Unable to fetch car details. Please try again later.');
-            })
-            .finally(() => setLoading(false));
-    }, []);
+                alert('Unable to fetch car details. Please try again later.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCarDetails();
+    }, [carId]);
 
     
     // Handle rental creation
@@ -97,6 +102,9 @@ const DetailScreen = ({route}) => {
             <ScrollView>
                 <CarDetailSection styles={styles} carDealer={carDetails}/>
                 <DealerInfoSection styles={styles} carDealer={carDetails} />
+                <TouchableOpacity style={styles.confirmButton} onPress={() => navigation.navigate('Rentals', { carId })} accessibilityLabel={`View rented dates for ${carDetails.model}`} accessibilityRole="button">
+                    <Text style={styles.confirmText}>View Rented dates for this car</Text>
+                </TouchableOpacity>
                 <RentalInfoSection styles={styles} car={carDetails} onConfirmRental={handleRental}/>
                 <Footer styles={styles} />
             </ScrollView> 
