@@ -31,7 +31,7 @@ const StackNavigator = () => {
         options={{
           headerStyle: { backgroundColor: themeColors.primaryBackgroundColor },
           headerTintColor: themeColors.textColor,
-          title: 'Car Details',
+          title: 'Unavailable On',
         }}
       />
       <Stack.Screen

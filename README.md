@@ -55,3 +55,24 @@ npm start
 There are warnings, but these come from implemented libraries
 
 ## Demo
+
+### Home page
+
+![Home](https://github.com/DaniilSsv/Cross-Platform/blob/8c240e3d467cce3670d870e555346aab6cb146a1/src/assets/readme/Screenshot_20241222_141507_Expo%20Go.jpg)
+
+### List of available Cars
+
+![Carlist](https://github.com/DaniilSsv/Cross-Platform/blob/8c240e3d467cce3670d870e555346aab6cb146a1/src/assets/readme/Screenshot_20241222_141512_Expo%20Go.jpg)
+
+### Settings
+
+![Settings](https://github.com/DaniilSsv/Cross-Platform/blob/8c240e3d467cce3670d870e555346aab6cb146a1/src/assets/readme/Screenshot_20241222_141518_Expo%20Go.jpg)
+
+### Car Details
+
+![FirstHalf](https://github.com/DaniilSsv/Cross-Platform/blob/8c240e3d467cce3670d870e555346aab6cb146a1/src/assets/readme/Screenshot_20241222_141527_Expo%20Go.jpg)
+![SecondHalf](https://github.com/DaniilSsv/Cross-Platform/blob/8c240e3d467cce3670d870e555346aab6cb146a1/src/assets/readme/Screenshot_20241222_141530_Expo%20Go.jpg)
+
+### Rented?
+
+![On what dates is it rented?]()
