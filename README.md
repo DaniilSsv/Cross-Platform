@@ -75,4 +75,4 @@ There are warnings, but these come from implemented libraries
 
 ### Rented on?
 
-![On what dates is it rented?](https://github.com/DaniilSsv/Cross-Platform/blob/fae2c55acb48500d430cae239213eb7e1515bd89/src/assets/readme/Screenshot_20241222_142743_Expo%20Go.jpg)
+![On what dates is it rented?](https://github.com/DaniilSsv/Cross-Platform/blob/8c240e3d467cce3670d870e555346aab6cb146a1/src/assets/readme/Screenshot_20241222_142743_Expo%20Go.jpg)
